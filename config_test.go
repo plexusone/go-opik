@@ -253,10 +253,15 @@ func TestSaveConfig(t *testing.T) {
 	// Create temp dir to simulate home
 	tmpDir := t.TempDir()
 
-	// Override home dir for test
+	// Override home dir for test (HOME for Unix, USERPROFILE for Windows)
 	origHome := os.Getenv("HOME")
+	origUserProfile := os.Getenv("USERPROFILE")
 	os.Setenv("HOME", tmpDir)
-	defer os.Setenv("HOME", origHome)
+	os.Setenv("USERPROFILE", tmpDir)
+	defer func() {
+		os.Setenv("HOME", origHome)
+		os.Setenv("USERPROFILE", origUserProfile)
+	}()
 
 	cfg := &Config{
 		URL:         "https://test.example.com/api",
