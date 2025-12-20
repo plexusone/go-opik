@@ -73,8 +73,8 @@ github.com/googleapis/gax-go/v2 v2.15.0 h1:SyjDc1mGgZU5LncH8gimWo9lW1DtIfPibOG81
 github.com/googleapis/gax-go/v2 v2.15.0/go.mod h1:zVVkkxAQHa1RQpg9z2AUCMnKhi0Qld9rcmyfL1OZhoc=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
 github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/grokify/gollm v0.6.0 h1:tE/yQ/CvlvH9T0rWYdTopHLh0OUKw6H6QaS/1+N3acQ=
-github.com/grokify/gollm v0.6.0/go.mod h1:jJgq14jfy/ervZh0lNT2BEJKwB3ubVA4z03ceu7W8O8=
+github.com/grokify/gollm v0.6.1 h1:uF2D6sklgZabsMmCeAfmHNJADtcycF8T10O85krg0pc=
+github.com/grokify/gollm v0.6.1/go.mod h1:jJgq14jfy/ervZh0lNT2BEJKwB3ubVA4z03ceu7W8O8=
 github.com/grokify/sogo v0.13.0 h1:uTsSYb8ESdl+BC0hxbaexmZLTe2t1xKZ+Mzfskaa3Z4=
 github.com/grokify/sogo v0.13.0/go.mod h1:HOXcXkSUZnmtATDSCuFKsTAMd2+cDSTjE7xQy4bWv+s=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
