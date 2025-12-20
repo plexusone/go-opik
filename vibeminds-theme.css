@@ -1,0 +1,160 @@
+/* VibeMinds.AI Marp Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+section {
+	font-family: 'Inter', sans-serif;
+	color: #ffffff;
+	background-color: #0f0f1f;
+	line-height: 1.5;
+	padding: 2em;
+}
+
+/* Titles */
+h1 {
+	font-size: 3.2em;
+	font-weight: 700;
+	color: #00ffd0;
+	/* Vibe accent */
+	margin-bottom: 0.3em;
+}
+
+h2 {
+	font-size: 2.2em;
+	font-weight: 600;
+	color: #00bfff;
+	margin-bottom: 0.3em;
+}
+
+h3 {
+	font-size: 1.8em;
+	font-weight: 600;
+	color: #88fff5;
+}
+
+/* Text & paragraphs */
+p,
+li {
+	font-size: 1.1em;
+	color: #e0e0e0;
+}
+
+/* Links */
+a {
+	color: #00ffd0;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Code blocks */
+pre {
+	font-family: 'Fira Code', monospace;
+	background-color: #1b1b2f;
+	color: #00ffd0;
+	padding: 0.5em 1em;
+	border-radius: 6px;
+	font-size: 0.95em;
+}
+
+/* Inline code - higher contrast */
+code {
+	font-family: 'Fira Code', monospace;
+	background-color: #2a2a4a;
+	color: #7fffed;
+	padding: 0.15em 0.4em;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
+/* Code inside pre blocks */
+pre code {
+	background-color: transparent;
+	color: #00ffd0;
+	padding: 0;
+}
+
+/* Code in tables - maximum contrast */
+td code,
+th code {
+	background-color: #3a3a5a;
+	color: #ffffff;
+	font-weight: 500;
+}
+
+/* Lists */
+ul,
+ol {
+	margin-left: 1.2em;
+}
+
+/* Slide footer / pagination */
+footer {
+	font-size: 0.8em;
+	color: #555;
+	text-align: right;
+}
+
+/* Blockquotes */
+blockquote {
+	border-left: 4px solid #00bfff;
+	padding-left: 1em;
+	color: #a0f0ff;
+	font-style: italic;
+}
+
+/* Emphasis */
+strong {
+	color: #00ffd0;
+}
+
+/* Horizontal rules */
+hr {
+	border: 0;
+	border-top: 2px solid #00bfff;
+	margin: 2em 0;
+}
+
+/* Images */
+img {
+	border-radius: 8px;
+	max-height: 60vh;
+	margin: 1em 0;
+}
+
+/* Highlights */
+mark {
+	background-color: rgba(0, 255, 208, 0.3);
+	color: #00ffd0;
+}
+
+/* Tables */
+table {
+	border-collapse: collapse;
+	margin: 1em 0;
+	font-size: 0.95em;
+}
+
+th {
+	background-color: #1b1b2f;
+	color: #00ffd0;
+	padding: 0.5em 1em;
+	border: 1px solid #333;
+}
+
+td {
+	padding: 0.5em 1em;
+	border: 1px solid #333;
+}
+
+tr:nth-child(even) {
+	background-color: rgba(27, 27, 47, 0.5);
+}
+
+/* Two-column layout helper */
+.columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}

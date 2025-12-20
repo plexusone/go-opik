@@ -1,0 +1,46 @@
+site_name: Go Opik SDK
+site_description: Go SDK for Opik - Open-source LLM observability platform by Comet ML
+site_url: https://grokify.github.io/go-comet-ml-opik/
+repo_url: https://github.com/grokify/go-comet-ml-opik
+repo_name: grokify/go-comet-ml-opik
+
+docs_dir: docsrc
+theme: readthedocs
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Configuration: getting-started/configuration.md
+    - Testing: getting-started/testing.md
+    - Development: getting-started/development.md
+  - Core Concepts:
+    - Traces and Spans: core-concepts/traces-and-spans.md
+    - Context Propagation: core-concepts/context-propagation.md
+    - Feedback Scores: core-concepts/feedback-scores.md
+  - Features:
+    - Datasets: features/datasets.md
+    - Experiments: features/experiments.md
+    - Prompts: features/prompts.md
+    - Streaming: features/streaming.md
+    - Batching: features/batching.md
+  - Evaluation:
+    - Overview: evaluation/overview.md
+    - Heuristic Metrics: evaluation/heuristic-metrics.md
+    - LLM Judges: evaluation/llm-judges.md
+  - Integrations:
+    - OpenAI: integrations/openai.md
+    - Anthropic: integrations/anthropic.md
+    - gollm: integrations/gollm.md
+    - HTTP Middleware: integrations/http-middleware.md
+  - Tutorials:
+    - Agentic Observability: tutorials/agentic-observability.md
+  - CLI Reference: cli.md
+  - API Reference: api-reference.md
+  - Presentation: presentation.html

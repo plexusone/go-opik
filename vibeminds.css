@@ -1,0 +1,262 @@
+/* @theme vibeminds */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+section {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  color: #e8eaf6;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 24px;
+  padding: 40px 60px;
+  padding-top: 35px;
+}
+
+section * {
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Definition lists - remove horizontal lines */
+section dt, section dd {
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+section dt::after, section dd::before {
+  border: none !important;
+  content: none !important;
+}
+
+section dl {
+  border: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+section dl::before, section dl::after {
+  border: none !important;
+  content: none !important;
+}
+
+/* Target definition list elements aggressively */
+dt, dd, dl {
+  border: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  outline: none !important;
+}
+
+/* Pagination styling */
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 20px;
+  right: 60px;
+  font-size: 14px;
+  color: #7c4dff;
+  font-weight: 600;
+}
+
+/* Headings */
+section h1 {
+  font-size: 47px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.3em;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  border: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+section h2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #b39ddb;
+  margin-top: 0.5em;
+  margin-bottom: 0.4em;
+  border: none;
+}
+
+section h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #9575cd;
+  border: none;
+}
+
+/* Text elements */
+section p, section li {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #e8eaf6;
+}
+
+section strong {
+  color: #7c4dff;
+  font-weight: 600;
+}
+
+section em {
+  color: #b39ddb;
+  font-style: italic;
+}
+
+section a {
+  color: #7c4dff;
+  text-decoration: none;
+  border-bottom: 2px solid #7c4dff;
+}
+
+/* Code styling */
+section code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 20px;
+  background: rgba(124, 77, 255, 0.15);
+  color: #b39ddb;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(124, 77, 255, 0.3);
+  font-variant-ligatures: none;
+}
+
+section pre {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 18px;
+  background: rgba(15, 12, 41, 0.6);
+  border: 1px solid #7c4dff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 1em 0;
+  box-shadow: 0 4px 20px rgba(124, 77, 255, 0.2);
+  font-variant-ligatures: none;
+}
+
+section pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #f5f5f5;
+}
+
+section pre code .hljs-string,
+section pre code .hljs-attr {
+  color: #e8eaf6;
+}
+
+/* Lists */
+section ul, section ol {
+  margin: 0.5em 0;
+  border: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+section li {
+  margin: 0.27em 0;
+  line-height: 1.44;
+  font-size: 20px;
+  border: none;
+}
+
+/* Tables */
+section table {
+  border-collapse: collapse;
+  margin: 1em auto;
+  background: rgba(15, 12, 41, 0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 77, 255, 0.3);
+}
+
+section th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 20px;
+  text-align: left;
+}
+
+section td {
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(124, 77, 255, 0.2);
+  color: #e8eaf6;
+  background: rgba(15, 12, 41, 0.4);
+}
+
+section tr:last-child td {
+  border-bottom: none;
+}
+
+section tr:hover td {
+  background: rgba(124, 77, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Code in tables - higher contrast */
+section td code,
+section th code {
+  background: rgba(124, 77, 255, 0.35);
+  color: #ffffff;
+  font-weight: 500;
+  border: 1px solid rgba(124, 77, 255, 0.5);
+}
+
+/* Blockquotes */
+section blockquote {
+  border-left: 4px solid #7c4dff;
+  background: rgba(124, 77, 255, 0.1);
+  padding: 12px 20px;
+  margin: 1em 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Title slide styling */
+section:first-of-type h1 {
+  font-size: 58px;
+  text-align: center;
+  margin-top: 1em;
+}
+
+section:first-of-type h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #b39ddb;
+}
+
+section:first-of-type p {
+  text-align: center;
+  font-size: 22px;
+  color: #9575cd;
+}
+
+/* Emoji and icon styling */
+section img[alt~="emoji"], section img[alt~="icon"] {
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+/* Hide horizontal rules */
+section hr {
+  display: none;
+}
+
+/* VibeMinds.AI branding footer */
+section::before {
+  content: 'VibeMinds.AI';
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+  font-size: 12px;
+  color: #7c4dff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
