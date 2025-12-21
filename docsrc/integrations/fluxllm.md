@@ -1,11 +1,11 @@
-# gollm Integration
+# fluxllm Integration
 
-Integrate with [gollm](https://github.com/grokify/gollm), a unified LLM wrapper library that supports multiple providers (OpenAI, Anthropic, Bedrock, Gemini, Ollama, xAI).
+Integrate with [fluxllm](https://github.com/grokify/fluxllm), a unified LLM wrapper library that supports multiple providers (OpenAI, Anthropic, Bedrock, Gemini, Ollama, xAI).
 
 ```go
 import (
-    "github.com/grokify/gollm"
-    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
+    "github.com/grokify/fluxllm"
+    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
 )
 ```
 
@@ -28,10 +28,10 @@ Wrap individual LLM calls with spans for maximum control.
 ```go
 import (
     opik "github.com/grokify/go-comet-ml-opik"
-    "github.com/grokify/gollm"
+    "github.com/grokify/fluxllm"
 )
 
-func callLLM(ctx context.Context, client *gollm.ChatClient, req *gollm.ChatCompletionRequest) (*gollm.ChatCompletionResponse, error) {
+func callLLM(ctx context.Context, client *fluxllm.ChatClient, req *fluxllm.ChatCompletionRequest) (*fluxllm.ChatCompletionResponse, error) {
     // Get current span/trace from context
     var span *opik.Span
     var err error
@@ -106,14 +106,14 @@ Use the built-in `TracingClient` wrapper for automatic tracing of all calls.
 ```go
 import (
     opik "github.com/grokify/go-comet-ml-opik"
-    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
-    "github.com/grokify/gollm"
+    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
+    "github.com/grokify/fluxllm"
 )
 
 func main() {
-    // Create gollm client
-    client, _ := gollm.NewClient(gollm.ClientConfig{
-        Provider: gollm.ProviderNameOpenAI,
+    // Create fluxllm client
+    client, _ := fluxllm.NewClient(fluxllm.ClientConfig{
+        Provider: fluxllm.ProviderNameOpenAI,
         APIKey:   os.Getenv("OPENAI_API_KEY"),
     })
 
@@ -121,17 +121,17 @@ func main() {
     opikClient, _ := opik.NewClient()
 
     // Wrap with tracing
-    tracingClient := opikgollm.NewTracingClient(client, opikClient)
+    tracingClient := opikfluxllm.NewTracingClient(client, opikClient)
 
     // Start a trace
     ctx, trace, _ := opik.StartTrace(ctx, opikClient, "my-task")
     defer trace.End(ctx)
 
     // All calls are automatically traced!
-    resp, _ := tracingClient.CreateChatCompletion(ctx, &gollm.ChatCompletionRequest{
+    resp, _ := tracingClient.CreateChatCompletion(ctx, &fluxllm.ChatCompletionRequest{
         Model: "gpt-4o",
-        Messages: []gollm.Message{
-            {Role: gollm.RoleUser, Content: "Hello!"},
+        Messages: []fluxllm.Message{
+            {Role: fluxllm.RoleUser, Content: "Hello!"},
         },
     })
 
@@ -147,7 +147,7 @@ func main() {
 | `CreateChatCompletionStream` | Traced streaming completion |
 | `CreateChatCompletionWithMemory` | Traced completion with memory |
 | `Close` | Close underlying client |
-| `Client` | Access underlying gollm client |
+| `Client` | Access underlying fluxllm client |
 
 ### Streaming Support
 
@@ -183,26 +183,26 @@ resp, _ := tracingClient.CreateChatCompletionWithMemory(ctx, "session-123", req)
 
 ## Option 3: Evaluation Provider
 
-Use gollm as an LLM provider for evaluation judges.
+Use fluxllm as an LLM provider for evaluation judges.
 
 ```go
 import (
-    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
+    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
     "github.com/grokify/go-comet-ml-opik/evaluation/llm"
-    "github.com/grokify/gollm"
+    "github.com/grokify/fluxllm"
 )
 
 func main() {
-    // Create gollm client with any provider
-    client, _ := gollm.NewClient(gollm.ClientConfig{
-        Provider: gollm.ProviderNameAnthropic,
+    // Create fluxllm client with any provider
+    client, _ := fluxllm.NewClient(fluxllm.ClientConfig{
+        Provider: fluxllm.ProviderNameAnthropic,
         APIKey:   os.Getenv("ANTHROPIC_API_KEY"),
     })
 
     // Create evaluation provider
-    provider := opikgollm.NewProvider(client,
-        opikgollm.WithModel("claude-sonnet-4-20250514"),
-        opikgollm.WithTemperature(0.0),
+    provider := opikfluxllm.NewProvider(client,
+        opikfluxllm.WithModel("claude-sonnet-4-20250514"),
+        opikfluxllm.WithTemperature(0.0),
     )
 
     // Use with evaluation metrics
@@ -244,7 +244,7 @@ func main() {
 
 ## Supported Providers
 
-gollm supports these providers, all work with the Opik integration:
+fluxllm supports these providers, all work with the Opik integration:
 
 | Provider | Config |
 |----------|--------|
@@ -267,16 +267,16 @@ import (
     opik "github.com/grokify/go-comet-ml-opik"
     "github.com/grokify/go-comet-ml-opik/evaluation"
     "github.com/grokify/go-comet-ml-opik/evaluation/llm"
-    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
-    "github.com/grokify/gollm"
+    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
+    "github.com/grokify/fluxllm"
 )
 
 func main() {
     ctx := context.Background()
 
-    // Create gollm client
-    client, _ := gollm.NewClient(gollm.ClientConfig{
-        Provider: gollm.ProviderNameOpenAI,
+    // Create fluxllm client
+    client, _ := fluxllm.NewClient(fluxllm.ClientConfig{
+        Provider: fluxllm.ProviderNameOpenAI,
         APIKey:   os.Getenv("OPENAI_API_KEY"),
     })
 
@@ -284,11 +284,11 @@ func main() {
     opikClient, _ := opik.NewClient()
 
     // OPTION 2: Tracing wrapper for automatic tracing
-    tracingClient := opikgollm.NewTracingClient(client, opikClient)
+    tracingClient := opikfluxllm.NewTracingClient(client, opikClient)
 
     // OPTION 3: Evaluation provider for LLM judges
-    evalProvider := opikgollm.NewProvider(client,
-        opikgollm.WithModel("gpt-4o"),
+    evalProvider := opikfluxllm.NewProvider(client,
+        opikfluxllm.WithModel("gpt-4o"),
     )
 
     // Start trace
@@ -296,9 +296,9 @@ func main() {
     defer trace.End(ctx)
 
     // Generate response (automatically traced)
-    resp, _ := tracingClient.CreateChatCompletion(ctx, &gollm.ChatCompletionRequest{
+    resp, _ := tracingClient.CreateChatCompletion(ctx, &fluxllm.ChatCompletionRequest{
         Model:    "gpt-4o",
-        Messages: []gollm.Message{{Role: gollm.RoleUser, Content: "What is 2+2?"}},
+        Messages: []fluxllm.Message{{Role: fluxllm.RoleUser, Content: "What is 2+2?"}},
     })
 
     answer := resp.Choices[0].Message.Content

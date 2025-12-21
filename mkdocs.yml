@@ -37,7 +37,7 @@ nav:
   - Integrations:
     - OpenAI: integrations/openai.md
     - Anthropic: integrations/anthropic.md
-    - gollm: integrations/gollm.md
+    - fluxllm: integrations/fluxllm.md
     - HTTP Middleware: integrations/http-middleware.md
   - Tutorials:
     - Agentic Observability: tutorials/agentic-observability.md

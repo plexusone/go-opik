@@ -1,4 +1,4 @@
-package gollm
+package fluxllm
 
 import (
 	"context"
@@ -7,19 +7,19 @@ import (
 	"time"
 
 	opik "github.com/grokify/go-comet-ml-opik"
-	gollmlib "github.com/grokify/gollm"
-	"github.com/grokify/gollm/provider"
+	fluxllm "github.com/grokify/fluxllm"
+	"github.com/grokify/fluxllm/provider"
 )
 
 // TracingClient wraps a gollm.ChatClient with automatic Opik tracing.
 type TracingClient struct {
-	client      *gollmlib.ChatClient
+	client      *fluxllm.ChatClient
 	opikClient  *opik.Client
 	spanOptions []opik.SpanOption
 }
 
 // NewTracingClient creates a new tracing client wrapper.
-func NewTracingClient(client *gollmlib.ChatClient, opikClient *opik.Client, opts ...opik.SpanOption) *TracingClient {
+func NewTracingClient(client *fluxllm.ChatClient, opikClient *opik.Client, opts ...opik.SpanOption) *TracingClient {
 	return &TracingClient{
 		client:      client,
 		opikClient:  opikClient,
@@ -194,7 +194,7 @@ func (t *TracingClient) Close() error {
 }
 
 // Client returns the underlying gollm.ChatClient.
-func (t *TracingClient) Client() *gollmlib.ChatClient {
+func (t *TracingClient) Client() *fluxllm.ChatClient {
 	return t.client
 }
 

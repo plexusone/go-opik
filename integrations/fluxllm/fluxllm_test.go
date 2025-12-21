@@ -1,9 +1,9 @@
-package gollm
+package fluxllm
 
 import (
 	"testing"
 
-	"github.com/grokify/gollm/provider"
+	"github.com/grokify/fluxllm/provider"
 )
 
 func TestNewProvider(t *testing.T) {

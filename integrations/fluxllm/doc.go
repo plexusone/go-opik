@@ -13,9 +13,9 @@
 // Wrap your gollm.ChatClient to automatically trace all LLM calls:
 //
 //	import (
-//	    "github.com/grokify/gollm"
+//	    "github.com/grokify/fluxllm"
 //	    opik "github.com/grokify/go-comet-ml-opik"
-//	    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
+//	    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
 //	)
 //
 //	// Create gollm client
@@ -28,7 +28,7 @@
 //	opikClient, _ := opik.NewClient()
 //
 //	// Wrap for tracing
-//	tracingClient := opikgollm.NewTracingClient(client, opikClient)
+//	tracingClient := opikfluxllm.NewTracingClient(client, opikClient)
 //
 //	// Use within a trace context
 //	ctx, trace, _ := opik.StartTrace(ctx, opikClient, "my-task")
@@ -45,8 +45,8 @@
 // Use gollm as a provider for LLM-based evaluation metrics:
 //
 //	import (
-//	    "github.com/grokify/gollm"
-//	    opikgollm "github.com/grokify/go-comet-ml-opik/integrations/gollm"
+//	    "github.com/grokify/fluxllm"
+//	    opikfluxllm "github.com/grokify/go-comet-ml-opik/integrations/fluxllm"
 //	    "github.com/grokify/go-comet-ml-opik/evaluation/llm"
 //	)
 //
@@ -57,8 +57,8 @@
 //	})
 //
 //	// Create evaluation provider
-//	provider := opikgollm.NewProvider(client,
-//	    opikgollm.WithModel("claude-3-opus-20240229"),
+//	provider := opikfluxllm.NewProvider(client,
+//	    opikfluxllm.WithModel("claude-3-opus-20240229"),
 //	)
 //
 //	// Use with evaluation metrics
@@ -80,4 +80,4 @@
 //	    // Process chunk...
 //	}
 //	// Span is automatically ended with complete response when stream closes
-package gollm
+package fluxllm

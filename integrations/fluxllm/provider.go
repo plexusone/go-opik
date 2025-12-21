@@ -1,23 +1,23 @@
-package gollm
+package fluxllm
 
 import (
 	"context"
 
 	"github.com/grokify/go-comet-ml-opik/evaluation/llm"
-	gollmlib "github.com/grokify/gollm"
-	"github.com/grokify/gollm/provider"
+	fluxllm "github.com/grokify/fluxllm"
+	"github.com/grokify/fluxllm/provider"
 )
 
 // Provider implements llm.Provider using a gollm.ChatClient.
 type Provider struct {
-	client      *gollmlib.ChatClient
+	client      *fluxllm.ChatClient
 	model       string
 	temperature float64
 	maxTokens   int
 }
 
 // NewProvider creates a new evaluation provider using gollm.
-func NewProvider(client *gollmlib.ChatClient, opts ...Option) *Provider {
+func NewProvider(client *fluxllm.ChatClient, opts ...Option) *Provider {
 	p := &Provider{
 		client: client,
 	}
