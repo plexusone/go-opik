@@ -701,7 +701,7 @@ Creating the MkDocs structure, tutorials with code examples, <break time="400ms"
 and a README with badges. <break time="800ms"/>
 -->
 
-# What Claude Opus 4.5 Handled Well 💪
+# What Claude Handled Well 💪
 
 <center>
 
