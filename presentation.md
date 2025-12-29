@@ -602,58 +602,44 @@ The estimated cost was just 20 to 30 dollars. <break time="800ms"/>
 ---
 
 <!--
-How long would this take a human engineer? <break time="500ms"/>
-Let's break it down by component. <break time="400ms"/>
-Understanding the Python SDK and planning would take 1 to 2 days. <break time="400ms"/>
-Setting up ogen and generating the API client, half a day to a day. <break time="400ms"/>
-The core SDK with client, config, traces, and spans, 4 to 6 days. <break time="500ms"/>
-Context propagation and distributed tracing, about 2 days. <break time="400ms"/>
-Datasets, experiments, and prompts, 2 to 3 days. <break time="400ms"/>
-Streaming, batching, and attachments, another 2 to 3 days. <break time="400ms"/>
-The evaluation framework with heuristic metrics, 2 to 3 days. <break time="400ms"/>
-LLM Judge metrics with 8 or more metrics, 2 to 3 days. <break time="400ms"/>
-Integrations for OpenAI, Anthropic, and GoLLM, 2 to 3 days. <break time="400ms"/>
-CLI tool and middleware, 1 to 2 days. <break time="400ms"/>
-Test utilities and all tests, 4 to 6 days. <break time="400ms"/>
-Documentation including README, MkDocs, and tutorial, 2 to 3 days. <break time="400ms"/>
-And CI/CD, debugging, and polish, another 2 to 3 days. <break time="500ms"/>
-Total estimate: 25 to 40 days. <break time="800ms"/>
+How does this compare to industry benchmarks? <break time="500ms"/>
+SDK generation companies report consistent timelines. <break time="400ms"/>
+APIMatic says 4 weeks to build a single SDK, at around 52K dollars including maintenance. <break time="500ms"/>
+Speakeasy estimates 90K per hand-written SDK. <break time="500ms"/>
+liblab reports weeks or months for manual development, at 50K plus per language. <break time="600ms"/>
+These companies sell SDK tools, so they emphasize manual costs, <break time="400ms"/>
+but the ballpark is consistent across sources. <break time="500ms"/>
+Building a production SDK manually takes weeks, not hours. <break time="800ms"/>
 -->
 
-# Human Engineer Estimate ⏱️
+# Industry Benchmarks ⏱️
 
 <center>
 
-### Estimated Time for Manual Development (25-40 days)
+### What SDK Companies Report for Manual Development
 
 </center>
-<div style="font-size:0.5em">
 
-| Component | Estimated Days |
-|-----------|---------------|
-| Understanding Python SDK & Planning | 1-2 days |
-| ogen setup & API client generation | 0.5-1 day |
-| Core SDK (client, config, traces, spans) | 4-6 days |
-| Context propagation & distributed tracing | 2 days |
-| Datasets, Experiments, Prompts | 2-3 days |
-| Streaming, Batching, Attachments | 2-3 days |
-| Evaluation framework (heuristic) | 2-3 days |
-| LLM Judge metrics (8+ metrics) | 2-3 days |
-| Integrations (OpenAI, Anthropic, GoLLM) | 2-3 days |
-| CLI tool & Middleware | 1-2 days |
-| Test utilities & All tests | 4-6 days |
-| Documentation (README, MkDocs, Tutorial) | 2-3 days |
-| CI/CD, debugging, polish | 2-3 days |
+| Source | Time Estimate | Cost Estimate |
+|--------|---------------|---------------|
+| [APIMatic](https://www.apimatic.io/blog/2021/09/the-great-sdk-battle-build-vs-buy) | 4 weeks per SDK | ~$52K including maintenance |
+| [Speakeasy](https://www.speakeasy.com/blog/how-to-build-sdks) | Months | ~$90K per SDK |
+| [liblab](https://liblab.com/blog/automated-sdk-generation) | "Weeks or months" | $50K+ per language |
 
-</div>
+<center>
+
+*These companies sell SDK tools, so they emphasize manual costs—but the ballpark is consistent.*
+
+**Building a production SDK manually takes weeks, not hours.**
+
+</center>
 
 ---
 
 <!--
 Now let's compare productivity. <break time="500ms"/>
-A human engineer would take 5 to 8 weeks, or 25 to 40 days. <break time="500ms"/>
-Claude Opus 4.5 completed the same work in just 4 to 5 hours. <break time="600ms"/>
-That's roughly 50 to 80 times faster. <break time="700ms"/>
+Industry sources suggest 4 or more weeks for manual SDK development. <break time="500ms"/>
+Claude Opus 4.5 completed this work in just 4 to 5 hours. <break time="600ms"/>
 What accounts for this difference? <break time="500ms"/>
 First, parallel processing. Claude reads multiple files simultaneously. <break time="500ms"/>
 Second, no context switching. Continuous focus on a single project. <break time="500ms"/>
@@ -661,28 +647,29 @@ Third, pattern recognition. Claude instantly applies Go idioms. <break time="500
 Fourth, reference implementation. Quickly mapping Python to Go patterns. <break time="500ms"/>
 Fifth, no typing delay. Code is generated at output speed. <break time="500ms"/>
 And sixth, integrated testing. Tests are written alongside implementation. <break time="600ms"/>
-Important note: Human review is still essential for production deployment. <break time="800ms"/>
+Important caveats: Human review is still essential. <break time="400ms"/>
+And your mileage may vary based on API complexity and coverage requirements. <break time="800ms"/>
 -->
 
 # Productivity Comparison 🚀
 
 ### Time Comparison
 
-| Approach | Time | Speedup |
-|----------|------|---------|
-| **Human Engineer** | 5-8 weeks (25-40 days) | 1x |
-| **Claude Opus 4.5** | 4-5 hours | **~50-80x faster** |
+| Approach | Time | Source |
+|----------|------|--------|
+| **Industry Benchmark** | 4+ weeks per SDK | APIMatic, Speakeasy, liblab |
+| **Claude Opus 4.5** | 4-5 hours | This project |
 
-### What Accounts for the Difference?
-
-1. **Parallel Processing** - Claude reads multiple files simultaneously
-2. **No Context Switching** - Continuous focus on single project
-3. **Pattern Recognition** - Instantly applies Go idioms
-4. **Reference Implementation** - Quickly maps Python → Go patterns
-5. **No Typing Delay** - Generates code at output speed
-6. **Integrated Testing** - Writes tests alongside implementation
-
-### Note: Human review still essential for production deployment
+1. What Accounts for the Difference?
+    1. **Parallel Processing** - Claude reads multiple files simultaneously
+    2. **No Context Switching** - Continuous focus on single project
+    3. **Pattern Recognition** - Instantly applies Go idioms
+    4. **Reference Implementation** - Quickly maps Python → Go patterns
+    5. **No Typing Delay** - Generates code at output speed
+    6. **Integrated Testing** - Writes tests alongside implementation
+2. Caveats
+    1. Human review still essential for production deployment
+    2. Your mileage may vary based on API complexity and coverage requirements
 
 ---
 
