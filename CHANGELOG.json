@@ -1,0 +1,73 @@
+{
+  "ir_version": "1.0",
+  "project": "go-opik",
+  "repository": "https://github.com/agentplexus/go-opik",
+  "releases": [
+    {
+      "version": "0.5.0",
+      "date": "2026-01-03",
+      "added": [
+        { "description": "Built-in OmniObserve `llmops` provider adapter" },
+        { "description": "`llmops/provider.go` - Full `llmops.Provider` implementation" },
+        { "description": "`llmops/trace.go` - Trace and span adapters" },
+        { "description": "`GetDatasetByID` for retrieving datasets by ID" },
+        { "description": "`DeleteDataset` for removing datasets" },
+        { "description": "`CreateAnnotation` and `ListAnnotations` stubs (returns not implemented)" },
+        { "description": "Integration tests for SDK and llmops provider" },
+        { "description": "Feature comparison matrix in README" }
+      ],
+      "changed": [
+        {
+          "description": "Module renamed from `github.com/agentplexus/go-comet-ml-opik` to `github.com/agentplexus/go-opik`",
+          "breaking": true
+        },
+        { "description": "Updated dependency: `omniobserve v0.4.0` to `v0.5.0`" }
+      ]
+    },
+    {
+      "version": "0.4.0",
+      "date": "2026-01-03",
+      "fixed": [
+        { "description": "Span project association" },
+        { "description": "JSON encoding issues" }
+      ]
+    },
+    {
+      "version": "0.3.0",
+      "date": "2025-12-27",
+      "changed": [
+        { "description": "Transferred repository to `agentplexus` organization" }
+      ],
+      "fixed": [
+        { "description": "SAST security findings in CLI" },
+        { "description": "Code formatting with `gofmt`" }
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "date": "2025-12-21",
+      "fixed": [
+        { "description": "Windows test compatibility for `TestSaveConfig()`" },
+        { "description": "golangci-lint warnings" }
+      ],
+      "changed": [
+        { "description": "Updated dependencies" }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2025-12-20",
+      "added": [
+        { "description": "Initial release of go-opik SDK" },
+        { "description": "Core SDK: client, traces, spans, context propagation" },
+        { "description": "Data management: datasets, experiments, prompts" },
+        { "description": "Evaluation framework: heuristic metrics, LLM judges" },
+        { "description": "Integrations: OpenAI, Anthropic tracing transports" },
+        { "description": "CLI tool (`cmd/opik`)" },
+        { "description": "HTTP middleware for automatic tracing" },
+        { "description": "Streaming and batching support" },
+        { "description": "MkDocs documentation site" }
+      ]
+    }
+  ]
+}
