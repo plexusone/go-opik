@@ -110,6 +110,66 @@ This pattern allows you to:
 - Use a consistent API across different LLM observability platforms
 - Build provider-agnostic observability tooling
 
+### Feature Comparison
+
+| Feature | Opik (Python) | go-opik | omniobserve/llmops | Tests | Notes |
+|---------|:-------------:|:-------:|:------------------:|:-----:|-------|
+| **Tracing** | | | | | |
+| StartTrace | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| StartSpan | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| SetInput/Output | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| SetModel/Provider | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| SetUsage (tokens) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| AddFeedbackScore | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| TraceFromContext | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| SpanFromContext | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| Nested Spans | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| Span Types | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | general, llm, tool, guardrail |
+| Duration/Timing | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| **Prompts** | | | | | |
+| CreatePrompt | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| GetPrompt | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | By name + optional version |
+| ListPrompts | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| CreatePromptVersion | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| ListPromptVersions | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| **Datasets** | | | | | |
+| CreateDataset | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| GetDataset | :white_check_mark: | :white_check_mark: | :white_check_mark: | | By name |
+| AddDatasetItems | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| ListDatasets | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| DeleteDataset | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| **Experiments** | | | | | |
+| CreateExperiment | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| LogExperimentItem | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| ListExperiments | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| **Projects** | | | | | |
+| CreateProject | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| GetProject | :white_check_mark: | :white_check_mark: | :white_check_mark: | | |
+| ListProjects | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| SetProject | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | |
+| **Evaluation** | | | | | |
+| Evaluate | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | Run metrics |
+| AddFeedbackScore | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | Record results |
+| **Advanced** | | | | | |
+| Distributed Tracing | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| Streaming Spans | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| Attachments | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+| HTTP Middleware | :x: | :white_check_mark: | :x: | | Go SDK extension |
+| Local Recording | :x: | :white_check_mark: | :x: | | Go SDK extension |
+| Batching Client | :white_check_mark: | :white_check_mark: | :x: | | Not in omniobserve interface |
+
+**Running omniobserve/llmops tests:**
+
+```bash
+# Skip tests when no API key is set
+go test -v ./llmops/
+
+# Run tests with API key
+export OPIK_API_KEY=your-api-key
+export OPIK_WORKSPACE=your-workspace  # optional
+go test -v ./llmops/
+```
+
 ## Configuration
 
 ### Environment Variables

@@ -420,6 +420,41 @@ func (p *Provider) SetProject(ctx context.Context, name string) error {
 	return nil
 }
 
+// GetDatasetByID gets a dataset by ID.
+func (p *Provider) GetDatasetByID(ctx context.Context, id string) (*llmops.Dataset, error) {
+	dataset, err := p.client.GetDataset(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	return &llmops.Dataset{
+		ID:          dataset.ID(),
+		Name:        dataset.Name(),
+		Description: dataset.Description(),
+	}, nil
+}
+
+// DeleteDataset deletes a dataset by ID.
+func (p *Provider) DeleteDataset(ctx context.Context, datasetID string) error {
+	return p.client.DeleteDataset(ctx, datasetID)
+}
+
+// CreateAnnotation creates an annotation on a span or trace.
+// Note: Opik uses feedback scores rather than a separate annotation system.
+// This method adds feedback scores to approximate annotation functionality.
+func (p *Provider) CreateAnnotation(ctx context.Context, annotation llmops.Annotation) error {
+	// Opik doesn't have a dedicated annotation API.
+	// Feedback scores are the closest equivalent, but they require an active span/trace context.
+	// For now, return not implemented until Opik adds annotation support.
+	return llmops.WrapNotImplemented(ProviderName, "CreateAnnotation")
+}
+
+// ListAnnotations lists annotations for spans or traces.
+// Note: Opik uses feedback scores rather than a separate annotation system.
+func (p *Provider) ListAnnotations(ctx context.Context, opts llmops.ListAnnotationsOptions) ([]*llmops.Annotation, error) {
+	// Opik doesn't have a dedicated annotation API.
+	return nil, llmops.WrapNotImplemented(ProviderName, "ListAnnotations")
+}
+
 // mapSpanOptions converts llmops span options to Opik span options.
 func mapSpanOptions(cfg *llmops.SpanOptions) []opik.SpanOption {
 	opikOpts := []opik.SpanOption{}

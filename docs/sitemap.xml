@@ -2,94 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://agentplexus.github.io/go-opik/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/api-reference/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/cli/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/core-concepts/context-propagation/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/core-concepts/feedback-scores/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/core-concepts/traces-and-spans/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/evaluation/heuristic-metrics/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/evaluation/llm-judges/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/evaluation/overview/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/features/batching/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/features/datasets/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/features/experiments/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/features/prompts/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/features/streaming/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/getting-started/configuration/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/getting-started/development/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/getting-started/installation/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/getting-started/testing/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/integrations/anthropic/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/integrations/http-middleware/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/integrations/omnillm/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/integrations/openai/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://agentplexus.github.io/go-opik/tutorials/agentic-observability/</loc>
-         <lastmod>2025-12-29</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
 </urlset>
