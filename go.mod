@@ -4,7 +4,7 @@ go 1.24.11
 
 require (
 	github.com/agentplexus/omnillm v0.11.0
-	github.com/agentplexus/omniobserve v0.5.0
+	github.com/agentplexus/omniobserve v0.5.1
 	github.com/go-faster/errors v0.7.1
 	github.com/go-faster/jx v1.2.0
 	github.com/google/uuid v1.6.0
