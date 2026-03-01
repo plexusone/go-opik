@@ -2,6 +2,7 @@ package heuristic
 
 import (
 	"context"
+	"strconv"
 	"strings"
 
 	"github.com/plexusone/opik-go/evaluation"
@@ -250,7 +251,7 @@ func (m *LengthBetween) Score(ctx context.Context, input evaluation.MetricInput)
 		return evaluation.NewScoreResultWithReason(m.Name(), 1.0, "length within range")
 	}
 	return evaluation.NewScoreResultWithReason(m.Name(), 0.0,
-		"length out of range: "+string(rune(length)))
+		"length out of range: "+strconv.Itoa(length))
 }
 
 // WordCount checks if the output word count is within a range.
