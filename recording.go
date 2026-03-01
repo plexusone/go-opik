@@ -4,6 +4,8 @@ import (
 	"context"
 	"sync"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 // RecordedTrace represents a trace captured during local recording.
@@ -379,31 +381,7 @@ func generateID() string {
 }
 
 func generateUUID() string {
-	// Use google/uuid if available, otherwise simple implementation
-	b := make([]byte, 16)
-	// This is a simple implementation - in production use crypto/rand
-	for i := range b {
-		b[i] = byte(time.Now().UnixNano() >> (i * 4))
-	}
-	return formatUUID(b)
-}
-
-func formatUUID(b []byte) string {
-	return string(hexEncode(b[0:4])) + "-" +
-		string(hexEncode(b[4:6])) + "-" +
-		string(hexEncode(b[6:8])) + "-" +
-		string(hexEncode(b[8:10])) + "-" +
-		string(hexEncode(b[10:16]))
-}
-
-func hexEncode(b []byte) []byte {
-	const hex = "0123456789abcdef"
-	dst := make([]byte, len(b)*2)
-	for i, v := range b {
-		dst[i*2] = hex[v>>4]
-		dst[i*2+1] = hex[v&0x0f]
-	}
-	return dst
+	return uuid.New().String()
 }
 
 // RecordTracesLocally returns a recording client for local testing.

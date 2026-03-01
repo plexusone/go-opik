@@ -443,22 +443,3 @@ func TestGenerateUUID(t *testing.T) {
 		t.Errorf("UUID length = %d, want 36", len(id2))
 	}
 }
-
-func TestHexEncode(t *testing.T) {
-	tests := []struct {
-		input []byte
-		want  string
-	}{
-		{[]byte{0x00}, "00"},
-		{[]byte{0xff}, "ff"},
-		{[]byte{0x12, 0x34}, "1234"},
-		{[]byte{0xab, 0xcd, 0xef}, "abcdef"},
-	}
-
-	for _, tt := range tests {
-		got := string(hexEncode(tt.input))
-		if got != tt.want {
-			t.Errorf("hexEncode(%v) = %q, want %q", tt.input, got, tt.want)
-		}
-	}
-}
