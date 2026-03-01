@@ -6,8 +6,8 @@ cloud.google.com/go/compute/metadata v0.9.0 h1:pDUj4QMoPejqq20dK0Pg2N4yG9zIkYGdB
 cloud.google.com/go/compute/metadata v0.9.0/go.mod h1:E0bWwX5wTnLPedCKqk3pJmVgCBSM6qQI1yTBdEb3C10=
 github.com/agentplexus/omnillm v0.12.0 h1:DjWIfSIRHUwhlugBz/esFbuF1sSTlZ1xU/rCqRRdfjg=
 github.com/agentplexus/omnillm v0.12.0/go.mod h1:oXSrIgrJlrWnkTT49JLgaZ0djTai8QKazPQtwSadBSM=
-github.com/agentplexus/omniobserve v0.5.1 h1:dDoZlDyJnsE/Dloe2KiL9qvyLcFsScKzj1LYyklcLP0=
-github.com/agentplexus/omniobserve v0.5.1/go.mod h1:qnUhvMCViaUIITILKmOlzmi19Es/eYH/gmcdyDywZdY=
+github.com/agentplexus/omniobserve v0.6.0 h1:t/nK688RWP1Vaamyn7IYFfiNLkVwwjtbOUuYkquOr5U=
+github.com/agentplexus/omniobserve v0.6.0/go.mod h1:oaoO2x78DpSBt5VViSYkzFSYJF9IIOTjje2KpD8go6s=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
 github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
