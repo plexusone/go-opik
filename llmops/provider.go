@@ -18,8 +18,8 @@ import (
 	"context"
 	"time"
 
-	opik "github.com/plexusone/opik-go"
 	"github.com/plexusone/omniobserve/llmops"
+	opik "github.com/plexusone/opik-go"
 )
 
 // ProviderName is the name used to register and open this provider.
