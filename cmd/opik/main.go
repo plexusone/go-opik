@@ -33,7 +33,7 @@ func main() {
 	case "help":
 		printUsage()
 	default:
-		fmt.Fprintf(os.Stderr, "Unknown command: %s\n", cmd)
+		fmt.Fprintf(os.Stderr, "Unknown command: %s\n", cmd) //nolint:gosec // G705: CLI output to stderr, not web
 		printUsage()
 		os.Exit(1)
 	}

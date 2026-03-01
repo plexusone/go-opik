@@ -37,7 +37,7 @@ type Config struct {
 
 	// APIKey is the API key for authentication with Opik Cloud.
 	// Not required for local/self-hosted instances.
-	APIKey string
+	APIKey string //nolint:gosec // G117: Intentional - SDK config needs API key field
 
 	// Workspace is the workspace name for Opik Cloud.
 	// Required for Opik Cloud, ignored for local instances.

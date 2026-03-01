@@ -382,7 +382,7 @@ func ImageFromURL(ctx context.Context, name, url string) (*Attachment, error) {
 		return nil, err
 	}
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := http.DefaultClient.Do(req) //nolint:gosec // G704: URL is provided by SDK user for fetching attachments
 	if err != nil {
 		return nil, err
 	}

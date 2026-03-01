@@ -177,7 +177,7 @@ func (p *Provider) Complete(ctx context.Context, req llm.CompletionRequest) (*ll
 	httpReq.Header.Set("x-api-key", p.apiKey)
 	httpReq.Header.Set("anthropic-version", apiVersion)
 
-	resp, err := p.client.Do(httpReq)
+	resp, err := p.client.Do(httpReq) //nolint:gosec // G704: URL is Anthropic API endpoint
 	if err != nil {
 		return nil, fmt.Errorf("request failed: %w", err)
 	}

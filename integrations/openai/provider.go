@@ -171,7 +171,7 @@ func (p *Provider) Complete(ctx context.Context, req llm.CompletionRequest) (*ll
 	httpReq.Header.Set("Content-Type", "application/json")
 	httpReq.Header.Set("Authorization", "Bearer "+p.apiKey)
 
-	resp, err := p.client.Do(httpReq)
+	resp, err := p.client.Do(httpReq) //nolint:gosec // G704: URL is OpenAI API endpoint
 	if err != nil {
 		return nil, fmt.Errorf("request failed: %w", err)
 	}

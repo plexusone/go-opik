@@ -122,7 +122,7 @@ func TestMockServerRecording(t *testing.T) {
 	body := bytes.NewBufferString(`{"data":"test"}`)
 	req, _ := http.NewRequest("POST", ms.URL()+"/api/record", body)
 	req.Header.Set("Authorization", "Bearer token123")
-	_, _ = http.DefaultClient.Do(req)
+	_, _ = http.DefaultClient.Do(req) //nolint:gosec // G704: Test code hitting local mock server
 
 	t.Run("records request count", func(t *testing.T) {
 		if ms.RequestCount() != 1 {
@@ -252,7 +252,7 @@ func TestMockServerHTTPMethods(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.method, func(t *testing.T) {
 			req, _ := http.NewRequest(tt.method, ms.URL()+tt.path, nil)
-			resp, err := http.DefaultClient.Do(req)
+			resp, err := http.DefaultClient.Do(req) //nolint:gosec // G704: Test code hitting local mock server
 			if err != nil {
 				t.Fatalf("request error: %v", err)
 			}

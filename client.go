@@ -88,7 +88,7 @@ func (c *authHTTPClient) Do(req *http.Request) (*http.Response, error) {
 	req.Header.Set("X-OPIK-DEBUG-SDK-LANG", "go")
 	// Note: Not requesting gzip as the ogen client doesn't auto-decompress
 
-	return c.client.Do(req)
+	return c.client.Do(req) //nolint:gosec // G704: URL is configured by SDK user
 }
 
 // Config returns the client configuration.

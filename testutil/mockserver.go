@@ -171,9 +171,9 @@ func (ms *MockServer) handler(w http.ResponseWriter, r *http.Request) {
 		if route.Headers["Content-Type"] == "application/json" {
 			_ = json.NewEncoder(w).Encode(route.Response)
 		} else if s, ok := route.Response.(string); ok {
-			_, _ = w.Write([]byte(s))
+			_, _ = w.Write([]byte(s)) //nolint:gosec // G705: Test mock server, not production web
 		} else if b, ok := route.Response.([]byte); ok {
-			_, _ = w.Write(b)
+			_, _ = w.Write(b) //nolint:gosec // G705: Test mock server, not production web
 		}
 	}
 }

@@ -7,14 +7,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/plexusone/omniobserve/llmops"
 	opik "github.com/plexusone/opik-go"
 	_ "github.com/plexusone/opik-go/llmops"
-	"github.com/plexusone/omniobserve/llmops"
 )
 
 // testConfig holds configuration for integration tests.
 type testConfig struct {
-	APIKey    string
+	APIKey    string //nolint:gosec // G117: Test config struct
 	Workspace string
 	Endpoint  string
 }
