@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/integrations/openai/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>OpenAI - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OpenAI";
+        var mkdocs_page_input_path = "integrations/openai.md";
+        var mkdocs_page_url = "/opik-go/integrations/openai/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">OpenAI</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#auto-tracing">Auto-Tracing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tracing-http-client">Tracing HTTP Client</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tracing-provider">Tracing Provider</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wrap-existing-client">Wrap Existing Client</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-gets-traced">What Gets Traced</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#evaluation-provider">Evaluation Provider</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#provider-options">Provider Options</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azure-openai">Azure OpenAI</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Integrations</li>
+      <li class="breadcrumb-item active">OpenAI</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/integrations/openai.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="openai-integration">OpenAI Integration<a class="headerlink" href="#openai-integration" title="Permanent link">&para;</a></h1>
+<p>Auto-trace OpenAI API calls and use OpenAI as an evaluation judge.</p>
+<pre><code class="language-go">import &quot;github.com/plexusone/opik-go/integrations/openai&quot;
+</code></pre>
+<h2 id="auto-tracing">Auto-Tracing<a class="headerlink" href="#auto-tracing" title="Permanent link">&para;</a></h2>
+<h3 id="tracing-http-client">Tracing HTTP Client<a class="headerlink" href="#tracing-http-client" title="Permanent link">&para;</a></h3>
+<p>Wrap HTTP calls to automatically create spans:</p>
+<pre><code class="language-go">opikClient, _ := opik.NewClient()
+
+// Create tracing HTTP client
+httpClient := openai.TracingHTTPClient(opikClient)
+
+// Use with OpenAI SDK
+config := openai.DefaultConfig(&quot;your-api-key&quot;)
+config.HTTPClient = httpClient
+client := openai.NewClientWithConfig(config)
+</code></pre>
+<h3 id="tracing-provider">Tracing Provider<a class="headerlink" href="#tracing-provider" title="Permanent link">&para;</a></h3>
+<p>Create a complete tracing provider:</p>
+<pre><code class="language-go">tracingProvider := openai.TracingProvider(opikClient,
+    openai.WithModel(&quot;gpt-4o&quot;),
+)
+</code></pre>
+<h3 id="wrap-existing-client">Wrap Existing Client<a class="headerlink" href="#wrap-existing-client" title="Permanent link">&para;</a></h3>
+<p>Add tracing to an existing HTTP client:</p>
+<pre><code class="language-go">existingClient := &amp;http.Client{Timeout: 30 * time.Second}
+tracingClient := openai.Wrap(existingClient, opikClient)
+</code></pre>
+<h2 id="what-gets-traced">What Gets Traced<a class="headerlink" href="#what-gets-traced" title="Permanent link">&para;</a></h2>
+<p>Each API call creates a span with:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td><code>LLM</code></td>
+</tr>
+<tr>
+<td>Provider</td>
+<td><code>openai</code></td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Model name from request</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Request body (messages, parameters)</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Response body (completions, choices)</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Token usage, duration</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evaluation-provider">Evaluation Provider<a class="headerlink" href="#evaluation-provider" title="Permanent link">&para;</a></h2>
+<p>Use OpenAI as an LLM judge:</p>
+<pre><code class="language-go">provider := openai.NewProvider(
+    openai.WithAPIKey(&quot;your-api-key&quot;),
+    openai.WithModel(&quot;gpt-4o&quot;),
+    openai.WithTemperature(0.0), // Deterministic for evaluation
+)
+
+// Use with evaluation metrics
+relevance := llm.NewAnswerRelevance(provider)
+hallucination := llm.NewHallucination(provider)
+</code></pre>
+<h3 id="provider-options">Provider Options<a class="headerlink" href="#provider-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithAPIKey(key)</code></td>
+<td>Set API key (default: <code>OPENAI_API_KEY</code> env)</td>
+</tr>
+<tr>
+<td><code>WithModel(model)</code></td>
+<td>Set model (default: <code>gpt-4o</code>)</td>
+</tr>
+<tr>
+<td><code>WithBaseURL(url)</code></td>
+<td>Custom endpoint (for Azure, proxies)</td>
+</tr>
+<tr>
+<td><code>WithHTTPClient(client)</code></td>
+<td>Custom HTTP client</td>
+</tr>
+<tr>
+<td><code>WithTemperature(temp)</code></td>
+<td>Generation temperature</td>
+</tr>
+<tr>
+<td><code>WithMaxTokens(max)</code></td>
+<td>Maximum tokens</td>
+</tr>
+</tbody>
+</table>
+<h2 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">func main() {
+    ctx := context.Background()
+
+    // Create Opik client
+    opikClient, _ := opik.NewClient()
+
+    // Create tracing HTTP client
+    httpClient := openai.TracingHTTPClient(opikClient)
+
+    // Configure OpenAI with tracing
+    config := openai.DefaultConfig(os.Getenv(&quot;OPENAI_API_KEY&quot;))
+    config.HTTPClient = httpClient
+    oaiClient := openai.NewClientWithConfig(config)
+
+    // Start a trace
+    ctx, trace, _ := opik.StartTrace(ctx, opikClient, &quot;chat-request&quot;)
+    defer trace.End(ctx)
+
+    // Make OpenAI call - automatically traced!
+    resp, err := oaiClient.CreateChatCompletion(ctx, openai.ChatCompletionRequest{
+        Model: &quot;gpt-4o&quot;,
+        Messages: []openai.ChatCompletionMessage{
+            {Role: &quot;user&quot;, Content: &quot;Hello!&quot;},
+        },
+    })
+
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(resp.Choices[0].Message.Content)
+}
+</code></pre>
+<h2 id="azure-openai">Azure OpenAI<a class="headerlink" href="#azure-openai" title="Permanent link">&para;</a></h2>
+<p>Use with Azure OpenAI Service:</p>
+<pre><code class="language-go">provider := openai.NewProvider(
+    openai.WithAPIKey(&quot;your-azure-key&quot;),
+    openai.WithBaseURL(&quot;https://your-resource.openai.azure.com/openai/deployments/your-deployment&quot;),
+)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../evaluation/llm-judges/" class="btn btn-neutral float-left" title="LLM Judges"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../anthropic/" class="btn btn-neutral float-right" title="Anthropic">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../../evaluation/llm-judges/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../anthropic/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

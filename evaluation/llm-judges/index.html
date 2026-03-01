@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/evaluation/llm-judges/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>LLM Judges - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "LLM Judges";
+        var mkdocs_page_input_path = "evaluation/llm-judges.md";
+        var mkdocs_page_url = "/opik-go/evaluation/llm-judges/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">LLM Judges</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-provider">Setting Up a Provider</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#built-in-judge-metrics">Built-in Judge Metrics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#answer-relevance">Answer Relevance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hallucination">Hallucination</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#factuality">Factuality</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#context-recall">Context Recall</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#context-precision">Context Precision</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#moderation">Moderation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#coherence">Coherence</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#helpfulness">Helpfulness</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#g-eval">G-EVAL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#custom-judge">Custom Judge</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#template-variables">Template Variables</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-multiple-judges">Using Multiple Judges</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#caching-responses">Caching Responses</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cost-considerations">Cost Considerations</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Evaluation</li>
+      <li class="breadcrumb-item active">LLM Judges</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/evaluation/llm-judges.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="llm-judge-metrics">LLM Judge Metrics<a class="headerlink" href="#llm-judge-metrics" title="Permanent link">&para;</a></h1>
+<p>Use an LLM to evaluate outputs that can't be measured with simple rules.</p>
+<pre><code class="language-go">import (
+    &quot;github.com/plexusone/opik-go/evaluation/llm&quot;
+    &quot;github.com/plexusone/opik-go/integrations/openai&quot;
+)
+</code></pre>
+<h2 id="setting-up-a-provider">Setting Up a Provider<a class="headerlink" href="#setting-up-a-provider" title="Permanent link">&para;</a></h2>
+<p>First, create an LLM provider:</p>
+<pre><code class="language-go">// OpenAI
+provider := openai.NewProvider(
+    openai.WithAPIKey(&quot;your-api-key&quot;),
+    openai.WithModel(&quot;gpt-4o&quot;),
+)
+
+// Anthropic
+provider := anthropic.NewProvider(
+    anthropic.WithAPIKey(&quot;your-api-key&quot;),
+    anthropic.WithModel(&quot;claude-sonnet-4-20250514&quot;),
+)
+
+// gollm (any provider)
+provider := gollm.NewProvider(gollmClient,
+    gollm.WithModel(&quot;gpt-4o&quot;),
+)
+</code></pre>
+<h2 id="built-in-judge-metrics">Built-in Judge Metrics<a class="headerlink" href="#built-in-judge-metrics" title="Permanent link">&para;</a></h2>
+<h3 id="answer-relevance">Answer Relevance<a class="headerlink" href="#answer-relevance" title="Permanent link">&para;</a></h3>
+<p>Evaluates how relevant the answer is to the question.</p>
+<pre><code class="language-go">metric := llm.NewAnswerRelevance(provider)
+</code></pre>
+<h3 id="hallucination">Hallucination<a class="headerlink" href="#hallucination" title="Permanent link">&para;</a></h3>
+<p>Detects factual claims not supported by the context.</p>
+<pre><code class="language-go">metric := llm.NewHallucination(provider)
+</code></pre>
+<p>Requires context in the input:</p>
+<pre><code class="language-go">input := evaluation.NewMetricInput(question, answer).
+    WithContext(relevantDocuments)
+</code></pre>
+<h3 id="factuality">Factuality<a class="headerlink" href="#factuality" title="Permanent link">&para;</a></h3>
+<p>Checks if the response is factually accurate.</p>
+<pre><code class="language-go">metric := llm.NewFactuality(provider)
+</code></pre>
+<h3 id="context-recall">Context Recall<a class="headerlink" href="#context-recall" title="Permanent link">&para;</a></h3>
+<p>Measures how much of the expected information is captured.</p>
+<pre><code class="language-go">metric := llm.NewContextRecall(provider)
+</code></pre>
+<h3 id="context-precision">Context Precision<a class="headerlink" href="#context-precision" title="Permanent link">&para;</a></h3>
+<p>Measures precision of information retrieval.</p>
+<pre><code class="language-go">metric := llm.NewContextPrecision(provider)
+</code></pre>
+<h3 id="moderation">Moderation<a class="headerlink" href="#moderation" title="Permanent link">&para;</a></h3>
+<p>Checks for harmful, inappropriate, or policy-violating content.</p>
+<pre><code class="language-go">metric := llm.NewModeration(provider)
+</code></pre>
+<h3 id="coherence">Coherence<a class="headerlink" href="#coherence" title="Permanent link">&para;</a></h3>
+<p>Evaluates logical flow and consistency.</p>
+<pre><code class="language-go">metric := llm.NewCoherence(provider)
+</code></pre>
+<h3 id="helpfulness">Helpfulness<a class="headerlink" href="#helpfulness" title="Permanent link">&para;</a></h3>
+<p>Measures how helpful the response is to the user.</p>
+<pre><code class="language-go">metric := llm.NewHelpfulness(provider)
+</code></pre>
+<h2 id="g-eval">G-EVAL<a class="headerlink" href="#g-eval" title="Permanent link">&para;</a></h2>
+<p>Flexible evaluation with custom criteria and evaluation steps.</p>
+<pre><code class="language-go">geval := llm.NewGEval(provider, &quot;fluency and coherence&quot;)
+
+// With custom evaluation steps
+geval = geval.WithEvaluationSteps([]string{
+    &quot;Check if the response is grammatically correct&quot;,
+    &quot;Evaluate the logical flow of ideas&quot;,
+    &quot;Assess clarity and readability&quot;,
+    &quot;Check for appropriate vocabulary usage&quot;,
+})
+
+score := geval.Score(ctx, input)
+</code></pre>
+<h2 id="custom-judge">Custom Judge<a class="headerlink" href="#custom-judge" title="Permanent link">&para;</a></h2>
+<p>Create a judge with a custom prompt template:</p>
+<pre><code class="language-go">prompt := `
+Evaluate whether the response maintains a professional tone.
+
+User message: {{input}}
+AI response: {{output}}
+
+Provide a score from 0.0 to 1.0 where:
+- 1.0: Completely professional
+- 0.5: Somewhat professional with minor issues
+- 0.0: Unprofessional
+
+Return JSON: {&quot;score&quot;: &lt;float&gt;, &quot;reason&quot;: &quot;&lt;explanation&gt;&quot;}
+`
+
+judge := llm.NewCustomJudge(&quot;tone_check&quot;, prompt, provider)
+</code></pre>
+<h3 id="template-variables">Template Variables<a class="headerlink" href="#template-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{input}}</code></td>
+<td>The original input/prompt</td>
+</tr>
+<tr>
+<td><code>{{output}}</code></td>
+<td>The LLM's response</td>
+</tr>
+<tr>
+<td><code>{{expected}}</code></td>
+<td>Expected/ground truth output</td>
+</tr>
+<tr>
+<td><code>{{context}}</code></td>
+<td>Additional context</td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-multiple-judges">Using Multiple Judges<a class="headerlink" href="#using-multiple-judges" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">metrics := []evaluation.Metric{
+    llm.NewAnswerRelevance(provider),
+    llm.NewHallucination(provider),
+    llm.NewCoherence(provider),
+    llm.NewHelpfulness(provider),
+}
+
+engine := evaluation.NewEngine(metrics,
+    evaluation.WithConcurrency(2), // Limit concurrent LLM calls
+)
+
+input := evaluation.NewMetricInput(question, answer).
+    WithExpected(expectedAnswer).
+    WithContext(documents)
+
+result := engine.EvaluateOne(ctx, input)
+</code></pre>
+<h2 id="caching-responses">Caching Responses<a class="headerlink" href="#caching-responses" title="Permanent link">&para;</a></h2>
+<p>Reduce costs by caching identical evaluations:</p>
+<pre><code class="language-go">// Wrap provider with caching
+cachedProvider := llm.NewCachingProvider(provider)
+
+// Use cached provider for metrics
+metric := llm.NewAnswerRelevance(cachedProvider)
+</code></pre>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Choose appropriate models</strong>: GPT-4 or Claude 3 for nuanced evaluation</li>
+<li><strong>Limit concurrency</strong>: Respect rate limits</li>
+<li><strong>Use caching</strong>: For repeated evaluations</li>
+<li><strong>Combine with heuristics</strong>: Use LLM judges only when needed</li>
+<li><strong>Monitor costs</strong>: LLM evaluations add up</li>
+</ol>
+<h2 id="cost-considerations">Cost Considerations<a class="headerlink" href="#cost-considerations" title="Permanent link">&para;</a></h2>
+<p>Each LLM judge metric makes an API call. For large datasets:</p>
+<ol>
+<li>Pre-filter with heuristic metrics</li>
+<li>Use caching for duplicate inputs</li>
+<li>Batch evaluations during off-peak hours</li>
+<li>Consider smaller models for simple judgments</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../heuristic-metrics/" class="btn btn-neutral float-left" title="Heuristic Metrics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../integrations/openai/" class="btn btn-neutral float-right" title="OpenAI">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../heuristic-metrics/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../integrations/openai/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

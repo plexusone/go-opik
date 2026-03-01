@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/getting-started/testing/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Testing - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Testing";
+        var mkdocs_page_input_path = "getting-started/testing.md";
+        var mkdocs_page_url = "/opik-go/getting-started/testing/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Testing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#quick-start">Quick Start</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verbose-output">Verbose Output</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#run-specific-test-packages">Run Specific Test Packages</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api-key-requirements">API Key Requirements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#what-tests-dont-require-api-keys">What Tests Don't Require API Keys</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#when-you-need-an-api-key">When You Need an API Key</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-coverage">Test Coverage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-sdk-config_testgo-context_testgo">Core SDK (config_test.go, context_test.go)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#heuristic-metrics-evaluationheuristic">Heuristic Metrics (evaluation/heuristic/)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#writing-new-tests">Writing New Tests</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#test-file-naming">Test File Naming</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test-structure-example">Test Structure Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-metrics">Testing Metrics</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#github-actions-example">GitHub Actions Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-coverage-report">Test Coverage Report</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tests-fail-due-to-missing-dependencies">Tests Fail Due to Missing Dependencies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#timeout-issues">Timeout Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#race-condition-detection">Race Condition Detection</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Testing</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/getting-started/testing.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
+<p>The Go Opik SDK includes a comprehensive test suite to ensure reliability and correctness.</p>
+<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
+<h3 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
+<p>Run all tests without any API key or external dependencies:</p>
+<pre><code class="language-bash">go test ./...
+</code></pre>
+<h3 id="verbose-output">Verbose Output<a class="headerlink" href="#verbose-output" title="Permanent link">&para;</a></h3>
+<p>See detailed test output:</p>
+<pre><code class="language-bash">go test ./... -v
+</code></pre>
+<h3 id="run-specific-test-packages">Run Specific Test Packages<a class="headerlink" href="#run-specific-test-packages" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Core SDK tests (config, context)
+go test github.com/plexusone/opik-go -v
+
+# Evaluation heuristic metrics
+go test github.com/plexusone/opik-go/evaluation/heuristic -v
+</code></pre>
+<h2 id="api-key-requirements">API Key Requirements<a class="headerlink" href="#api-key-requirements" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">No API Key Required for Unit Tests</p>
+<p><strong>All unit tests run locally without requiring an Opik API key or server connection.</strong> The test suite is designed to test the SDK's logic, data structures, and algorithms without making external API calls.</p>
+</div>
+<h3 id="what-tests-dont-require-api-keys">What Tests Don't Require API Keys<a class="headerlink" href="#what-tests-dont-require-api-keys" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Test Category</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Config Tests</strong></td>
+<td>Configuration loading from environment variables and files</td>
+</tr>
+<tr>
+<td><strong>Context Tests</strong></td>
+<td>Context propagation for traces and spans</td>
+</tr>
+<tr>
+<td><strong>String Metrics</strong></td>
+<td>Equals, Contains, StartsWith, EndsWith, etc.</td>
+</tr>
+<tr>
+<td><strong>Similarity Metrics</strong></td>
+<td>Levenshtein, Jaccard, Cosine, BLEU, ROUGE, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-you-need-an-api-key">When You Need an API Key<a class="headerlink" href="#when-you-need-an-api-key" title="Permanent link">&para;</a></h3>
+<p>API keys are only required for:</p>
+<ul>
+<li><strong>Integration tests</strong> (if added) that verify end-to-end functionality with an Opik server</li>
+<li><strong>Running the CLI</strong> to interact with a live Opik instance</li>
+<li><strong>Production usage</strong> of the SDK to send traces to Opik Cloud</li>
+</ul>
+<h2 id="test-coverage">Test Coverage<a class="headerlink" href="#test-coverage" title="Permanent link">&para;</a></h2>
+<h3 id="core-sdk-config_testgo-context_testgo">Core SDK (<code>config_test.go</code>, <code>context_test.go</code>)<a class="headerlink" href="#core-sdk-config_testgo-context_testgo" title="Permanent link">&para;</a></h3>
+<p>Tests for configuration management and context propagation:</p>
+<pre><code class="language-bash">go test github.com/plexusone/opik-go -v -run TestConfig
+go test github.com/plexusone/opik-go -v -run TestContext
+</code></pre>
+<p><strong>Config tests cover:</strong></p>
+<ul>
+<li><code>TestNewConfig</code> - Default configuration values</li>
+<li><code>TestLoadConfigFromEnv</code> - Environment variable loading</li>
+<li><code>TestLoadConfigTracingDisableVariants</code> - Tracing disable flag variants</li>
+<li><code>TestLoadConfigDefaultURL</code> - URL defaults based on API key presence</li>
+<li><code>TestConfigIsCloud</code> - Cloud vs local detection</li>
+<li><code>TestConfigValidate</code> - Configuration validation</li>
+<li><code>TestSaveConfig</code> - Configuration file saving</li>
+</ul>
+<p><strong>Context tests cover:</strong></p>
+<ul>
+<li><code>TestContextWithTrace</code> / <code>TestTraceFromContext</code> - Trace context storage</li>
+<li><code>TestContextWithSpan</code> / <code>TestSpanFromContext</code> - Span context storage</li>
+<li><code>TestContextWithClient</code> / <code>TestClientFromContext</code> - Client context storage</li>
+<li><code>TestContextChaining</code> - Multiple values in context</li>
+<li><code>TestCurrentTraceID</code> / <code>TestCurrentSpanID</code> - ID retrieval from context</li>
+<li><code>TestStartSpanNoActiveTrace</code> - Error handling</li>
+</ul>
+<h3 id="heuristic-metrics-evaluationheuristic">Heuristic Metrics (<code>evaluation/heuristic/</code>)<a class="headerlink" href="#heuristic-metrics-evaluationheuristic" title="Permanent link">&para;</a></h3>
+<p>Tests for string and similarity metrics:</p>
+<pre><code class="language-bash">go test github.com/plexusone/opik-go/evaluation/heuristic -v
+</code></pre>
+<p><strong>String metric tests (<code>string_test.go</code>):</strong></p>
+<ul>
+<li><code>TestEquals</code> / <code>TestEqualsIgnoreCase</code> - Exact string matching</li>
+<li><code>TestContains</code> / <code>TestContainsIgnoreCase</code> - Substring matching</li>
+<li><code>TestStartsWith</code> / <code>TestEndsWith</code> - Prefix/suffix matching</li>
+<li><code>TestContainsAny</code> / <code>TestContainsAll</code> - Multiple value matching</li>
+<li><code>TestNotEmpty</code> - Empty string detection</li>
+<li><code>TestLengthBetween</code> / <code>TestWordCount</code> - Length constraints</li>
+<li><code>TestNoOffensiveLanguage</code> - Content filtering</li>
+<li><code>TestMetricName</code> - Metric naming consistency</li>
+</ul>
+<p><strong>Similarity metric tests (<code>similarity_test.go</code>):</strong></p>
+<ul>
+<li><code>TestLevenshteinSimilarity</code> - Edit distance similarity</li>
+<li><code>TestLevenshteinDistance</code> - Raw edit distance calculation</li>
+<li><code>TestJaccardSimilarity</code> - Set-based similarity</li>
+<li><code>TestCosineSimilarity</code> - Vector-based similarity</li>
+<li><code>TestBLEU</code> - Machine translation metric</li>
+<li><code>TestROUGE</code> - Summarization metric</li>
+<li><code>TestFuzzyMatch</code> - Combined fuzzy matching</li>
+<li><code>TestSemanticSimilarity</code> - Word-based semantic similarity</li>
+<li><code>TestLCSLength</code> - Longest common subsequence</li>
+</ul>
+<h2 id="writing-new-tests">Writing New Tests<a class="headerlink" href="#writing-new-tests" title="Permanent link">&para;</a></h2>
+<h3 id="test-file-naming">Test File Naming<a class="headerlink" href="#test-file-naming" title="Permanent link">&para;</a></h3>
+<p>Follow Go conventions:</p>
+<ul>
+<li><code>foo.go</code> → <code>foo_test.go</code></li>
+<li>Package remains the same (not <code>_test</code> suffix for internal tests)</li>
+</ul>
+<h3 id="test-structure-example">Test Structure Example<a class="headerlink" href="#test-structure-example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">package opik
+
+import (
+    &quot;context&quot;
+    &quot;testing&quot;
+)
+
+func TestMyFunction(t *testing.T) {
+    ctx := context.Background()
+
+    tests := []struct {
+        name     string
+        input    string
+        expected string
+    }{
+        {&quot;basic case&quot;, &quot;input&quot;, &quot;expected&quot;},
+        {&quot;edge case&quot;, &quot;&quot;, &quot;&quot;},
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            result := MyFunction(ctx, tt.input)
+            if result != tt.expected {
+                t.Errorf(&quot;MyFunction() = %v, want %v&quot;, result, tt.expected)
+            }
+        })
+    }
+}
+</code></pre>
+<h3 id="testing-metrics">Testing Metrics<a class="headerlink" href="#testing-metrics" title="Permanent link">&para;</a></h3>
+<p>Use the <code>evaluation.MetricInput</code> type:</p>
+<pre><code class="language-go">func TestMyMetric(t *testing.T) {
+    ctx := context.Background()
+    metric := NewMyMetric()
+
+    input := evaluation.NewMetricInput(&quot;&quot;, &quot;output text&quot;).
+        WithExpected(&quot;expected text&quot;)
+
+    result := metric.Score(ctx, input)
+
+    if result.Value &lt; 0.9 {
+        t.Errorf(&quot;Score = %v, want &gt;= 0.9&quot;, result.Value)
+    }
+}
+</code></pre>
+<h2 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link">&para;</a></h2>
+<h3 id="github-actions-example">GitHub Actions Example<a class="headerlink" href="#github-actions-example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-yaml">name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Run Tests
+        run: go test ./... -v -race
+
+      - name: Run Tests with Coverage
+        run: go test ./... -coverprofile=coverage.out
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: coverage.out
+</code></pre>
+<h2 id="test-coverage-report">Test Coverage Report<a class="headerlink" href="#test-coverage-report" title="Permanent link">&para;</a></h2>
+<p>Generate a coverage report:</p>
+<pre><code class="language-bash"># Generate coverage profile
+go test ./... -coverprofile=coverage.out
+
+# View coverage summary
+go tool cover -func=coverage.out
+
+# Generate HTML report
+go tool cover -html=coverage.out -o coverage.html
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="tests-fail-due-to-missing-dependencies">Tests Fail Due to Missing Dependencies<a class="headerlink" href="#tests-fail-due-to-missing-dependencies" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">go mod download
+go mod tidy
+</code></pre>
+<h3 id="timeout-issues">Timeout Issues<a class="headerlink" href="#timeout-issues" title="Permanent link">&para;</a></h3>
+<p>Increase test timeout for slow machines:</p>
+<pre><code class="language-bash">go test ./... -timeout 5m
+</code></pre>
+<h3 id="race-condition-detection">Race Condition Detection<a class="headerlink" href="#race-condition-detection" title="Permanent link">&para;</a></h3>
+<p>Run tests with race detector:</p>
+<pre><code class="language-bash">go test ./... -race
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../configuration/" class="btn btn-neutral float-left" title="Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../development/" class="btn btn-neutral float-right" title="Development">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../development/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/features/datasets/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Datasets - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Datasets";
+        var mkdocs_page_input_path = "features/datasets.md";
+        var mkdocs_page_url = "/opik-go/features/datasets/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Datasets</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creating-datasets">Creating Datasets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inserting-items">Inserting Items</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#single-item">Single Item</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multiple-items">Multiple Items</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retrieving-items">Retrieving Items</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#listing-datasets">Listing Datasets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-a-dataset-by-name">Getting a Dataset by Name</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deleting-datasets">Deleting Datasets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dataset-item-structure">Dataset Item Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-building-an-evaluation-dataset">Example: Building an Evaluation Dataset</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-datasets-with-experiments">Using Datasets with Experiments</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Features</li>
+      <li class="breadcrumb-item active">Datasets</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/features/datasets.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="datasets">Datasets<a class="headerlink" href="#datasets" title="Permanent link">&para;</a></h1>
+<p>Datasets store evaluation data for testing and benchmarking your LLM applications.</p>
+<h2 id="creating-datasets">Creating Datasets<a class="headerlink" href="#creating-datasets" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Create a simple dataset
+dataset, _ := client.CreateDataset(ctx, &quot;my-dataset&quot;)
+
+// Create with options
+dataset, _ := client.CreateDataset(ctx, &quot;evaluation-data&quot;,
+    opik.WithDatasetDescription(&quot;Test data for Q&amp;A evaluation&quot;),
+    opik.WithDatasetTags(&quot;qa&quot;, &quot;evaluation&quot;, &quot;v1&quot;),
+)
+</code></pre>
+<h2 id="inserting-items">Inserting Items<a class="headerlink" href="#inserting-items" title="Permanent link">&para;</a></h2>
+<h3 id="single-item">Single Item<a class="headerlink" href="#single-item" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">dataset.InsertItem(ctx, map[string]any{
+    &quot;input&quot;:    &quot;What is the capital of France?&quot;,
+    &quot;expected&quot;: &quot;Paris&quot;,
+    &quot;category&quot;: &quot;geography&quot;,
+})
+</code></pre>
+<h3 id="multiple-items">Multiple Items<a class="headerlink" href="#multiple-items" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">items := []map[string]any{
+    {
+        &quot;input&quot;:    &quot;What is 2+2?&quot;,
+        &quot;expected&quot;: &quot;4&quot;,
+        &quot;category&quot;: &quot;math&quot;,
+    },
+    {
+        &quot;input&quot;:    &quot;What is 3+3?&quot;,
+        &quot;expected&quot;: &quot;6&quot;,
+        &quot;category&quot;: &quot;math&quot;,
+    },
+    {
+        &quot;input&quot;:    &quot;What color is the sky?&quot;,
+        &quot;expected&quot;: &quot;Blue&quot;,
+        &quot;category&quot;: &quot;general&quot;,
+    },
+}
+
+dataset.InsertItems(ctx, items)
+</code></pre>
+<h2 id="retrieving-items">Retrieving Items<a class="headerlink" href="#retrieving-items" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Get items with pagination
+items, _ := dataset.GetItems(ctx, 1, 100) // page 1, 100 items per page
+
+for _, item := range items {
+    fmt.Printf(&quot;Input: %v\n&quot;, item.Data[&quot;input&quot;])
+    fmt.Printf(&quot;Expected: %v\n&quot;, item.Data[&quot;expected&quot;])
+}
+</code></pre>
+<h2 id="listing-datasets">Listing Datasets<a class="headerlink" href="#listing-datasets" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// List all datasets
+datasets, _ := client.ListDatasets(ctx, 1, 100)
+
+for _, ds := range datasets {
+    fmt.Printf(&quot;Dataset: %s (ID: %s)\n&quot;, ds.Name, ds.ID)
+}
+</code></pre>
+<h2 id="getting-a-dataset-by-name">Getting a Dataset by Name<a class="headerlink" href="#getting-a-dataset-by-name" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">dataset, _ := client.GetDatasetByName(ctx, &quot;my-dataset&quot;)
+
+fmt.Printf(&quot;Name: %s\n&quot;, dataset.Name)
+fmt.Printf(&quot;Description: %s\n&quot;, dataset.Description)
+</code></pre>
+<h2 id="deleting-datasets">Deleting Datasets<a class="headerlink" href="#deleting-datasets" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Delete by dataset object
+dataset.Delete(ctx)
+</code></pre>
+<h2 id="dataset-item-structure">Dataset Item Structure<a class="headerlink" href="#dataset-item-structure" title="Permanent link">&para;</a></h2>
+<p>Each dataset item can contain any fields you need:</p>
+<table>
+<thead>
+<tr>
+<th>Common Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input</code></td>
+<td>The input/prompt to evaluate</td>
+</tr>
+<tr>
+<td><code>expected</code></td>
+<td>Expected/ground truth output</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Additional context for evaluation</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>Any additional metadata</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-building-an-evaluation-dataset">Example: Building an Evaluation Dataset<a class="headerlink" href="#example-building-an-evaluation-dataset" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">func buildEvaluationDataset(ctx context.Context, client *opik.Client) (*opik.Dataset, error) {
+    // Create dataset
+    dataset, err := client.CreateDataset(ctx, &quot;qa-evaluation-v1&quot;,
+        opik.WithDatasetDescription(&quot;Q&amp;A evaluation dataset&quot;),
+        opik.WithDatasetTags(&quot;qa&quot;, &quot;production&quot;),
+    )
+    if err != nil {
+        return nil, err
+    }
+
+    // Load test cases from file or database
+    testCases := loadTestCases()
+
+    // Convert to dataset items
+    items := make([]map[string]any, len(testCases))
+    for i, tc := range testCases {
+        items[i] = map[string]any{
+            &quot;input&quot;:    tc.Question,
+            &quot;expected&quot;: tc.Answer,
+            &quot;context&quot;:  tc.Context,
+            &quot;category&quot;: tc.Category,
+        }
+    }
+
+    // Bulk insert
+    err = dataset.InsertItems(ctx, items)
+    if err != nil {
+        return nil, err
+    }
+
+    return dataset, nil
+}
+</code></pre>
+<h2 id="using-datasets-with-experiments">Using Datasets with Experiments<a class="headerlink" href="#using-datasets-with-experiments" title="Permanent link">&para;</a></h2>
+<p>See <a href="../experiments/">Experiments</a> for how to run evaluations against datasets.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../core-concepts/feedback-scores/" class="btn btn-neutral float-left" title="Feedback Scores"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../experiments/" class="btn btn-neutral float-right" title="Experiments">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../../core-concepts/feedback-scores/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../experiments/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

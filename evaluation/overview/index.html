@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/evaluation/overview/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Overview - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview";
+        var mkdocs_page_input_path = "evaluation/overview.md";
+        var mkdocs_page_url = "/opik-go/evaluation/overview/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-example">Quick Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metric-interface">Metric Interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metricinput">MetricInput</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scoreresult">ScoreResult</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#evaluation-engine">Evaluation Engine</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dataset-evaluator">Dataset Evaluator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metric-categories">Metric Categories</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Evaluation</li>
+      <li class="breadcrumb-item active">Overview</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/evaluation/overview.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="evaluation-framework">Evaluation Framework<a class="headerlink" href="#evaluation-framework" title="Permanent link">&para;</a></h1>
+<p>The evaluation framework provides tools for measuring LLM output quality using both rule-based heuristics and LLM-as-judge approaches.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<pre><code>evaluation/
+├── Metric           # Interface for all metrics
+├── MetricInput      # Input data for evaluation
+├── ScoreResult      # Result of a metric evaluation
+├── Engine           # Runs multiple metrics concurrently
+├── heuristic/       # Rule-based metrics
+│   ├── string.go    # String matching (equals, contains)
+│   ├── parsing.go   # Format validation (JSON, XML)
+│   ├── pattern.go   # Regex and format patterns
+│   └── similarity.go # Text similarity (BLEU, ROUGE)
+└── llm/             # LLM-based judge metrics
+    ├── provider.go  # LLM provider interface
+    └── metrics.go   # Judge metrics (relevance, hallucination)
+</code></pre>
+<h2 id="quick-example">Quick Example<a class="headerlink" href="#quick-example" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">import (
+    &quot;github.com/plexusone/opik-go/evaluation&quot;
+    &quot;github.com/plexusone/opik-go/evaluation/heuristic&quot;
+)
+
+// Create metrics
+metrics := []evaluation.Metric{
+    heuristic.NewEquals(false),           // Case-insensitive equality
+    heuristic.NewContains(false),         // Substring check
+    heuristic.NewIsJSON(),                // JSON validation
+}
+
+// Create engine
+engine := evaluation.NewEngine(metrics,
+    evaluation.WithConcurrency(4),
+)
+
+// Create input
+input := evaluation.NewMetricInput(&quot;What is 2+2?&quot;, &quot;The answer is 4.&quot;)
+input = input.WithExpected(&quot;4&quot;)
+
+// Evaluate
+result := engine.EvaluateOne(ctx, input)
+
+fmt.Printf(&quot;Average score: %.2f\n&quot;, result.AverageScore())
+for name, score := range result.Scores {
+    fmt.Printf(&quot;  %s: %.2f\n&quot;, name, score.Value)
+}
+</code></pre>
+<h2 id="metric-interface">Metric Interface<a class="headerlink" href="#metric-interface" title="Permanent link">&para;</a></h2>
+<p>All metrics implement this interface:</p>
+<pre><code class="language-go">type Metric interface {
+    Name() string
+    Score(ctx context.Context, input MetricInput) *ScoreResult
+}
+</code></pre>
+<h2 id="metricinput">MetricInput<a class="headerlink" href="#metricinput" title="Permanent link">&para;</a></h2>
+<p>Contains all data needed for evaluation:</p>
+<pre><code class="language-go">type MetricInput struct {
+    Input    string         // The original input/prompt
+    Output   string         // The LLM's output to evaluate
+    Expected string         // Expected/ground truth output
+    Context  string         // Additional context
+    Metadata map[string]any // Any extra data
+}
+
+// Create input
+input := evaluation.NewMetricInput(prompt, llmOutput)
+input = input.WithExpected(expectedOutput)
+input = input.WithContext(additionalContext)
+</code></pre>
+<h2 id="scoreresult">ScoreResult<a class="headerlink" href="#scoreresult" title="Permanent link">&para;</a></h2>
+<p>Contains the evaluation result:</p>
+<pre><code class="language-go">type ScoreResult struct {
+    Name     string         // Metric name
+    Value    float64        // Score (typically 0.0 to 1.0)
+    Reason   string         // Explanation for the score
+    Metadata map[string]any // Additional data
+    Error    error          // Error if evaluation failed
+}
+
+// Helper constructors
+score := evaluation.NewScoreResult(&quot;accuracy&quot;, 0.95)
+score := evaluation.NewScoreResultWithReason(&quot;accuracy&quot;, 0.95, &quot;Exact match found&quot;)
+score := evaluation.BooleanScore(&quot;is_valid&quot;, true) // 1.0 for true, 0.0 for false
+</code></pre>
+<h2 id="evaluation-engine">Evaluation Engine<a class="headerlink" href="#evaluation-engine" title="Permanent link">&para;</a></h2>
+<p>Run multiple metrics concurrently:</p>
+<pre><code class="language-go">// Create engine with options
+engine := evaluation.NewEngine(metrics,
+    evaluation.WithConcurrency(4),  // Run 4 metrics in parallel
+)
+
+// Evaluate single input
+result := engine.EvaluateOne(ctx, input)
+
+// Evaluate multiple inputs
+inputs := []evaluation.MetricInput{input1, input2, input3}
+results := engine.EvaluateMany(ctx, inputs)
+
+// Evaluate with item IDs (for datasets)
+itemResults := engine.EvaluateWithIDs(ctx, map[string]evaluation.MetricInput{
+    &quot;item-1&quot;: input1,
+    &quot;item-2&quot;: input2,
+})
+</code></pre>
+<h2 id="dataset-evaluator">Dataset Evaluator<a class="headerlink" href="#dataset-evaluator" title="Permanent link">&para;</a></h2>
+<p>Evaluate entire datasets:</p>
+<pre><code class="language-go">evaluator := evaluation.NewDatasetEvaluator(engine, client)
+
+results, err := evaluator.Evaluate(ctx, dataset,
+    func(item map[string]any) string {
+        // Generate output for each dataset item
+        return llmClient.Complete(item[&quot;input&quot;].(string))
+    },
+)
+</code></pre>
+<h2 id="metric-categories">Metric Categories<a class="headerlink" href="#metric-categories" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../heuristic-metrics/">Heuristic</a></td>
+<td>Rule-based, deterministic</td>
+<td>Equals, Contains, IsJSON, BLEU</td>
+</tr>
+<tr>
+<td><a href="../llm-judges/">LLM Judge</a></td>
+<td>Uses LLM to evaluate</td>
+<td>Relevance, Hallucination, Factuality</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Combine metrics</strong>: Use multiple metrics for comprehensive evaluation</li>
+<li><strong>Use heuristics first</strong>: They're faster and cheaper than LLM judges</li>
+<li><strong>Set appropriate concurrency</strong>: Balance speed vs. rate limits</li>
+<li><strong>Handle errors</strong>: Check <code>ScoreResult.Error</code> for failed evaluations</li>
+<li><strong>Log to traces</strong>: Add scores as feedback to traces for tracking</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../features/batching/" class="btn btn-neutral float-left" title="Batching"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../heuristic-metrics/" class="btn btn-neutral float-right" title="Heuristic Metrics">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../../features/batching/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../heuristic-metrics/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

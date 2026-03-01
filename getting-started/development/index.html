@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/getting-started/development/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Development - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Development";
+        var mkdocs_page_input_path = "getting-started/development.md";
+        var mkdocs_page_url = "/opik-go/getting-started/development/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Development</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#regenerating-the-api-client">Regenerating the API Client</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-update-the-openapi-specification">Step 1: Update the OpenAPI Specification</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-install-ogen-if-not-already-installed">Step 2: Install ogen (if not already installed)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-3-run-the-generation-script">Step 3: Run the Generation Script</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manual-generation">Manual Generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#known-issues-and-fixes">Known Issues and Fixes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#jxraw-comparison">jx.Raw Comparison</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ogen-command-not-found">"ogen: command not found"</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#build-errors-after-generation">Build Errors After Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#api-changes-breaking-existing-code">API Changes Breaking Existing Code</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-linter">Running Linter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#building-the-cli">Building the CLI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#building-documentation">Building Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-style-guidelines">Code Style Guidelines</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#submitting-changes">Submitting Changes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Development</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/getting-started/development.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="development-guide">Development Guide<a class="headerlink" href="#development-guide" title="Permanent link">&para;</a></h1>
+<p>This guide covers development setup, code generation, and contribution guidelines for the Go Opik SDK.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before contributing to the SDK, ensure you have the following installed:</p>
+<ul>
+<li><strong>Go 1.21+</strong> - <a href="https://go.dev/dl/">Download Go</a></li>
+<li><strong>golangci-lint</strong> - For linting: <code>go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest</code></li>
+<li><strong>ogen</strong> - For API client generation: <code>go install github.com/ogen-go/ogen/cmd/ogen@latest</code></li>
+</ul>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<pre><code>go-opik/
+├── internal/api/           # ogen-generated API client (DO NOT EDIT)
+├── integrations/           # LLM provider integrations
+│   ├── openai/
+│   ├── anthropic/
+│   └── gollm/
+├── evaluation/             # Evaluation framework
+│   ├── heuristic/
+│   └── llm/
+├── middleware/             # HTTP tracing middleware
+├── testutil/               # Test utilities
+├── cmd/opik/               # CLI tool
+├── examples/               # Usage examples
+├── openapi/                # OpenAPI specification
+│   └── openapi.yaml
+└── docsrc/                 # Documentation source
+</code></pre>
+<h2 id="regenerating-the-api-client">Regenerating the API Client<a class="headerlink" href="#regenerating-the-api-client" title="Permanent link">&para;</a></h2>
+<p>The SDK uses <a href="https://github.com/ogen-go/ogen">ogen</a> to generate a type-safe API client from the Opik OpenAPI specification. When the upstream API changes, you'll need to regenerate the client code.</p>
+<h3 id="step-1-update-the-openapi-specification">Step 1: Update the OpenAPI Specification<a class="headerlink" href="#step-1-update-the-openapi-specification" title="Permanent link">&para;</a></h3>
+<p>The OpenAPI spec is located at <code>openapi/openapi.yaml</code>. To update it:</p>
+<pre><code class="language-bash"># Option A: Copy from your local Opik clone
+cp /path/to/opik/sdks/code_generation/fern/openapi/openapi.yaml openapi/
+
+# Option B: Download from the Opik repository
+curl -o openapi/openapi.yaml \
+  https://raw.githubusercontent.com/comet-ml/opik/main/sdks/code_generation/fern/openapi/openapi.yaml
+</code></pre>
+<h3 id="step-2-install-ogen-if-not-already-installed">Step 2: Install ogen (if not already installed)<a class="headerlink" href="#step-2-install-ogen-if-not-already-installed" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">go install github.com/ogen-go/ogen/cmd/ogen@latest
+</code></pre>
+<p>Verify installation:</p>
+<pre><code class="language-bash">ogen --version
+</code></pre>
+<h3 id="step-3-run-the-generation-script">Step 3: Run the Generation Script<a class="headerlink" href="#step-3-run-the-generation-script" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">./generate.sh
+</code></pre>
+<p>This script:</p>
+<ol>
+<li>Runs ogen to generate Go code from the OpenAPI spec</li>
+<li>Applies fixes for known issues (e.g., <code>jx.Raw</code> comparison)</li>
+<li>Runs <code>go mod tidy</code> to update dependencies</li>
+<li>Verifies the build compiles</li>
+</ol>
+<h3 id="manual-generation">Manual Generation<a class="headerlink" href="#manual-generation" title="Permanent link">&para;</a></h3>
+<p>If you need to run the generation manually:</p>
+<pre><code class="language-bash"># Generate the API client
+ogen --package api --target internal/api --clean openapi/openapi.yaml
+
+# Update dependencies
+go mod tidy
+
+# Verify build
+go build ./...
+</code></pre>
+<h3 id="known-issues-and-fixes">Known Issues and Fixes<a class="headerlink" href="#known-issues-and-fixes" title="Permanent link">&para;</a></h3>
+<p>The generated code may have issues that require post-processing:</p>
+<h4 id="jxraw-comparison">jx.Raw Comparison<a class="headerlink" href="#jxraw-comparison" title="Permanent link">&para;</a></h4>
+<p>The ogen generator creates equality functions that compare <code>jx.Raw</code> values directly, which doesn't work in Go. The <code>generate.sh</code> script automatically fixes this by replacing direct comparisons with <code>bytes.Equal()</code>.</p>
+<p><strong>Before (generated):</strong></p>
+<pre><code class="language-go">if a.Input != b.Input {
+    return false
+}
+</code></pre>
+<p><strong>After (fixed):</strong></p>
+<pre><code class="language-go">if !bytes.Equal([]byte(a.Input), []byte(b.Input)) {
+    return false
+}
+</code></pre>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<h4 id="ogen-command-not-found">"ogen: command not found"<a class="headerlink" href="#ogen-command-not-found" title="Permanent link">&para;</a></h4>
+<p>Ensure <code>$GOPATH/bin</code> is in your PATH:</p>
+<pre><code class="language-bash">export PATH=$PATH:$(go env GOPATH)/bin
+</code></pre>
+<h4 id="build-errors-after-generation">Build Errors After Generation<a class="headerlink" href="#build-errors-after-generation" title="Permanent link">&para;</a></h4>
+<p>If you encounter build errors after regenerating:</p>
+<ol>
+<li>Check that the OpenAPI spec is valid</li>
+<li>Ensure you're using a compatible ogen version</li>
+<li>Review the generated code for any new fields that need handling</li>
+<li>Run <code>go mod tidy</code> to resolve dependency issues</li>
+</ol>
+<h4 id="api-changes-breaking-existing-code">API Changes Breaking Existing Code<a class="headerlink" href="#api-changes-breaking-existing-code" title="Permanent link">&para;</a></h4>
+<p>When the API changes, you may need to update the SDK wrapper code (files outside <code>internal/api/</code>):</p>
+<ol>
+<li>Check for new required fields in request/response types</li>
+<li>Update any <code>OptXxx</code> type handling for new optional fields</li>
+<li>Add support for new endpoints in the appropriate files</li>
+</ol>
+<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Run all tests
+go test ./...
+
+# Run tests with race detection
+go test -race ./...
+
+# Run tests with coverage
+go test -coverprofile=coverage.out ./...
+go tool cover -html=coverage.out
+</code></pre>
+<h2 id="running-linter">Running Linter<a class="headerlink" href="#running-linter" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Run all linters
+golangci-lint run
+
+# Run with auto-fix where possible
+golangci-lint run --fix
+</code></pre>
+<h2 id="building-the-cli">Building the CLI<a class="headerlink" href="#building-the-cli" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Build for current platform
+make build-cli
+
+# Or manually
+go build -o bin/opik ./cmd/opik
+</code></pre>
+<h2 id="building-documentation">Building Documentation<a class="headerlink" href="#building-documentation" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Generate presentation HTML
+make presentation
+
+# Build MkDocs site
+make docs
+
+# Serve locally for development
+make docs-serve
+</code></pre>
+<h2 id="code-style-guidelines">Code Style Guidelines<a class="headerlink" href="#code-style-guidelines" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Follow standard Go conventions and idioms</li>
+<li>Use the functional options pattern for configuration</li>
+<li>Handle all errors explicitly (checked by <code>errcheck</code> linter)</li>
+<li>Add <code>//nolint</code> directives only with explanatory comments</li>
+<li>Keep the <code>internal/api/</code> directory untouched (auto-generated)</li>
+</ul>
+<h2 id="submitting-changes">Submitting Changes<a class="headerlink" href="#submitting-changes" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Make your changes</li>
+<li>Run tests and linter: <code>go test ./... &amp;&amp; golangci-lint run</code></li>
+<li>Submit a pull request</li>
+</ol>
+<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/plexusone/opik-go/issues">GitHub Issues</a></li>
+<li><a href="https://www.comet.com/docs/opik/">Opik Documentation</a></li>
+<li><a href="https://ogen.dev/">ogen Documentation</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../testing/" class="btn btn-neutral float-left" title="Testing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../core-concepts/traces-and-spans/" class="btn btn-neutral float-right" title="Traces and Spans">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../testing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../core-concepts/traces-and-spans/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

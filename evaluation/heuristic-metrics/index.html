@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/evaluation/heuristic-metrics/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Heuristic Metrics - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Heuristic Metrics";
+        var mkdocs_page_input_path = "evaluation/heuristic-metrics.md";
+        var mkdocs_page_url = "/opik-go/evaluation/heuristic-metrics/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Heuristic Metrics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#string-matching">String Matching</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#equals">Equals</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contains">Contains</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#startswith-endswith">StartsWith / EndsWith</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#containsany-containsall">ContainsAny / ContainsAll</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#notempty">NotEmpty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lengthbetween">LengthBetween</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wordcount">WordCount</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parsingformat-validation">Parsing/Format Validation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#json-validation">JSON Validation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xml-validation">XML Validation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#type-validation">Type Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pattern-matching">Pattern Matching</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#regex-match">Regex Match</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-formats">Common Formats</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#text-similarity">Text Similarity</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#levenshtein-similarity">Levenshtein Similarity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jaccard-similarity">Jaccard Similarity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cosine-similarity">Cosine Similarity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bleu-score">BLEU Score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rouge-score">ROUGE Score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fuzzy-match">Fuzzy Match</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-multiple-metrics">Using Multiple Metrics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-custom-heuristics">Creating Custom Heuristics</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Evaluation</li>
+      <li class="breadcrumb-item active">Heuristic Metrics</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/evaluation/heuristic-metrics.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="heuristic-metrics">Heuristic Metrics<a class="headerlink" href="#heuristic-metrics" title="Permanent link">&para;</a></h1>
+<p>Rule-based metrics that don't require an LLM. Fast, deterministic, and free.</p>
+<pre><code class="language-go">import &quot;github.com/plexusone/opik-go/evaluation/heuristic&quot;
+</code></pre>
+<h2 id="string-matching">String Matching<a class="headerlink" href="#string-matching" title="Permanent link">&para;</a></h2>
+<h3 id="equals">Equals<a class="headerlink" href="#equals" title="Permanent link">&para;</a></h3>
+<p>Check if output matches expected exactly.</p>
+<pre><code class="language-go">// Case-insensitive
+metric := heuristic.NewEquals(false)
+
+// Case-sensitive
+metric := heuristic.NewEquals(true)
+</code></pre>
+<h3 id="contains">Contains<a class="headerlink" href="#contains" title="Permanent link">&para;</a></h3>
+<p>Check if output contains expected as substring.</p>
+<pre><code class="language-go">metric := heuristic.NewContains(false) // case-insensitive
+</code></pre>
+<h3 id="startswith-endswith">StartsWith / EndsWith<a class="headerlink" href="#startswith-endswith" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">metric := heuristic.NewStartsWith(false)
+metric := heuristic.NewEndsWith(false)
+</code></pre>
+<h3 id="containsany-containsall">ContainsAny / ContainsAll<a class="headerlink" href="#containsany-containsall" title="Permanent link">&para;</a></h3>
+<p>Check for multiple substrings.</p>
+<pre><code class="language-go">// Match if ANY substring is found
+metric := heuristic.NewContainsAny([]string{&quot;yes&quot;, &quot;correct&quot;, &quot;right&quot;}, false)
+
+// Match if ALL substrings are found
+metric := heuristic.NewContainsAll([]string{&quot;name&quot;, &quot;email&quot;, &quot;phone&quot;}, false)
+</code></pre>
+<h3 id="notempty">NotEmpty<a class="headerlink" href="#notempty" title="Permanent link">&para;</a></h3>
+<p>Check that output is not empty.</p>
+<pre><code class="language-go">metric := heuristic.NewNotEmpty()
+</code></pre>
+<h3 id="lengthbetween">LengthBetween<a class="headerlink" href="#lengthbetween" title="Permanent link">&para;</a></h3>
+<p>Check output length is within range.</p>
+<pre><code class="language-go">metric := heuristic.NewLengthBetween(10, 1000) // 10-1000 characters
+</code></pre>
+<h3 id="wordcount">WordCount<a class="headerlink" href="#wordcount" title="Permanent link">&para;</a></h3>
+<p>Check word count is within range.</p>
+<pre><code class="language-go">metric := heuristic.NewWordCount(5, 100) // 5-100 words
+</code></pre>
+<h2 id="parsingformat-validation">Parsing/Format Validation<a class="headerlink" href="#parsingformat-validation" title="Permanent link">&para;</a></h2>
+<h3 id="json-validation">JSON Validation<a class="headerlink" href="#json-validation" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Check if valid JSON
+metric := heuristic.NewIsJSON()
+
+// Check if JSON object (not array)
+metric := heuristic.NewIsJSONObject()
+
+// Check if JSON array
+metric := heuristic.NewIsJSONArray()
+
+// Check if JSON has specific keys
+metric := heuristic.NewJSONHasKeys([]string{&quot;name&quot;, &quot;email&quot;, &quot;status&quot;})
+
+// Validate against JSON schema
+schema := `{
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+        &quot;name&quot;: {&quot;type&quot;: &quot;string&quot;},
+        &quot;age&quot;: {&quot;type&quot;: &quot;number&quot;}
+    },
+    &quot;required&quot;: [&quot;name&quot;]
+}`
+metric := heuristic.NewJSONSchemaValid(schema)
+</code></pre>
+<h3 id="xml-validation">XML Validation<a class="headerlink" href="#xml-validation" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">metric := heuristic.NewIsXML()
+</code></pre>
+<h3 id="type-validation">Type Validation<a class="headerlink" href="#type-validation" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">metric := heuristic.NewIsNumber()   // Valid number
+metric := heuristic.NewIsBoolean()  // &quot;true&quot;/&quot;false&quot;
+</code></pre>
+<h2 id="pattern-matching">Pattern Matching<a class="headerlink" href="#pattern-matching" title="Permanent link">&para;</a></h2>
+<h3 id="regex-match">Regex Match<a class="headerlink" href="#regex-match" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Must match pattern
+metric := heuristic.MustRegexMatch(`^\d{3}-\d{4}$`) // phone format
+
+// Must NOT match pattern
+metric := heuristic.MustRegexNotMatch(`(?i)error|fail`)
+</code></pre>
+<h3 id="common-formats">Common Formats<a class="headerlink" href="#common-formats" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Email format
+metric := heuristic.NewEmailFormat()
+
+// URL format
+metric := heuristic.NewURLFormat()
+
+// Phone format (flexible)
+metric := heuristic.NewPhoneFormat()
+
+// Date format (ISO 8601)
+metric := heuristic.NewDateFormat()
+
+// UUID format
+metric := heuristic.NewUUIDFormat()
+</code></pre>
+<h2 id="text-similarity">Text Similarity<a class="headerlink" href="#text-similarity" title="Permanent link">&para;</a></h2>
+<h3 id="levenshtein-similarity">Levenshtein Similarity<a class="headerlink" href="#levenshtein-similarity" title="Permanent link">&para;</a></h3>
+<p>Edit distance based similarity (0-1 scale).</p>
+<pre><code class="language-go">metric := heuristic.NewLevenshteinSimilarity(false) // case-insensitive
+</code></pre>
+<h3 id="jaccard-similarity">Jaccard Similarity<a class="headerlink" href="#jaccard-similarity" title="Permanent link">&para;</a></h3>
+<p>Word overlap similarity.</p>
+<pre><code class="language-go">metric := heuristic.NewJaccardSimilarity(false)
+</code></pre>
+<h3 id="cosine-similarity">Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permanent link">&para;</a></h3>
+<p>Word vector cosine similarity.</p>
+<pre><code class="language-go">metric := heuristic.NewCosineSimilarity(false)
+</code></pre>
+<h3 id="bleu-score">BLEU Score<a class="headerlink" href="#bleu-score" title="Permanent link">&para;</a></h3>
+<p>Machine translation evaluation metric.</p>
+<pre><code class="language-go">metric := heuristic.NewBLEU(4) // n-gram size up to 4
+</code></pre>
+<h3 id="rouge-score">ROUGE Score<a class="headerlink" href="#rouge-score" title="Permanent link">&para;</a></h3>
+<p>Recall-oriented similarity metric.</p>
+<pre><code class="language-go">metric := heuristic.NewROUGE(1.0) // beta parameter
+</code></pre>
+<h3 id="fuzzy-match">Fuzzy Match<a class="headerlink" href="#fuzzy-match" title="Permanent link">&para;</a></h3>
+<p>Flexible string matching with threshold.</p>
+<pre><code class="language-go">metric := heuristic.NewFuzzyMatch(0.8, false) // 80% threshold
+</code></pre>
+<h2 id="using-multiple-metrics">Using Multiple Metrics<a class="headerlink" href="#using-multiple-metrics" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">metrics := []evaluation.Metric{
+    heuristic.NewEquals(false),
+    heuristic.NewContains(false),
+    heuristic.NewIsJSON(),
+    heuristic.NewLevenshteinSimilarity(false),
+    heuristic.NewBLEU(4),
+}
+
+engine := evaluation.NewEngine(metrics)
+
+input := evaluation.NewMetricInput(&quot;prompt&quot;, &quot;output&quot;).WithExpected(&quot;expected&quot;)
+result := engine.EvaluateOne(ctx, input)
+
+for name, score := range result.Scores {
+    fmt.Printf(&quot;%s: %.2f\n&quot;, name, score.Value)
+}
+</code></pre>
+<h2 id="creating-custom-heuristics">Creating Custom Heuristics<a class="headerlink" href="#creating-custom-heuristics" title="Permanent link">&para;</a></h2>
+<p>Implement the <code>Metric</code> interface:</p>
+<pre><code class="language-go">type MyMetric struct {
+    evaluation.BaseMetric
+}
+
+func NewMyMetric() *MyMetric {
+    return &amp;MyMetric{
+        BaseMetric: evaluation.NewBaseMetric(&quot;my_metric&quot;),
+    }
+}
+
+func (m *MyMetric) Score(ctx context.Context, input evaluation.MetricInput) *evaluation.ScoreResult {
+    // Your custom logic
+    score := calculateScore(input.Output, input.Expected)
+    return evaluation.NewScoreResult(m.Name(), score)
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../overview/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../llm-judges/" class="btn btn-neutral float-right" title="LLM Judges">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../llm-judges/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

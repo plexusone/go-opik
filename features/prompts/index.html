@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/features/prompts/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Prompts - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Prompts";
+        var mkdocs_page_input_path = "features/prompts.md";
+        var mkdocs_page_url = "/opik-go/features/prompts/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Prompts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creating-prompts">Creating Prompts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#template-syntax">Template Syntax</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-prompts">Getting Prompts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rendering-templates">Rendering Templates</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-new-versions">Creating New Versions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#listing-versions">Listing Versions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#listing-all-prompts">Listing All Prompts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-prompts-in-llm-calls">Using Prompts in LLM Calls</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prompt-versioning-best-practices">Prompt Versioning Best Practices</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Features</li>
+      <li class="breadcrumb-item active">Prompts</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/features/prompts.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="prompts">Prompts<a class="headerlink" href="#prompts" title="Permanent link">&para;</a></h1>
+<p>Manage version-controlled prompt templates with variable substitution.</p>
+<h2 id="creating-prompts">Creating Prompts<a class="headerlink" href="#creating-prompts" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Create a prompt with template
+prompt, _ := client.CreatePrompt(ctx, &quot;greeting-prompt&quot;,
+    opik.WithPromptDescription(&quot;Greeting template for users&quot;),
+    opik.WithPromptTemplate(&quot;Hello, {{name}}! Welcome to {{place}}.&quot;),
+    opik.WithPromptTags(&quot;greeting&quot;, &quot;template&quot;),
+)
+</code></pre>
+<h2 id="template-syntax">Template Syntax<a class="headerlink" href="#template-syntax" title="Permanent link">&para;</a></h2>
+<p>Use <code>{{variable}}</code> syntax for placeholders:</p>
+<pre><code class="language-go">template := `You are a {{role}} assistant.
+
+User query: {{query}}
+
+Please provide a {{style}} response.`
+</code></pre>
+<h2 id="getting-prompts">Getting Prompts<a class="headerlink" href="#getting-prompts" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Get latest version by name
+version, _ := client.GetPromptByName(ctx, &quot;greeting-prompt&quot;, &quot;&quot;)
+
+// Get specific version (if you have the commit hash)
+version, _ := client.GetPromptByName(ctx, &quot;greeting-prompt&quot;, &quot;abc123&quot;)
+</code></pre>
+<h2 id="rendering-templates">Rendering Templates<a class="headerlink" href="#rendering-templates" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Render with variables
+rendered := version.Render(map[string]string{
+    &quot;name&quot;:  &quot;Alice&quot;,
+    &quot;place&quot;: &quot;Wonderland&quot;,
+})
+// Result: &quot;Hello, Alice! Welcome to Wonderland.&quot;
+
+// Extract variables from template
+vars := version.ExtractVariables()
+// Result: [&quot;name&quot;, &quot;place&quot;]
+</code></pre>
+<h2 id="creating-new-versions">Creating New Versions<a class="headerlink" href="#creating-new-versions" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Create a new version of an existing prompt
+newVersion, _ := prompt.CreateVersion(ctx, &quot;Hi, {{name}}! Great to see you!&quot;,
+    opik.WithVersionChangeDescription(&quot;Simplified greeting&quot;),
+)
+</code></pre>
+<h2 id="listing-versions">Listing Versions<a class="headerlink" href="#listing-versions" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Get all versions of a prompt
+versions, _ := prompt.GetVersions(ctx, 1, 100)
+
+for _, v := range versions {
+    fmt.Printf(&quot;Version: %s\n&quot;, v.Commit)
+    fmt.Printf(&quot;Template: %s\n&quot;, v.Template)
+    fmt.Printf(&quot;Created: %s\n&quot;, v.CreatedAt)
+}
+</code></pre>
+<h2 id="listing-all-prompts">Listing All Prompts<a class="headerlink" href="#listing-all-prompts" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">prompts, _ := client.ListPrompts(ctx, 1, 100)
+
+for _, p := range prompts {
+    fmt.Printf(&quot;Prompt: %s\n&quot;, p.Name)
+    fmt.Printf(&quot;Description: %s\n&quot;, p.Description)
+}
+</code></pre>
+<h2 id="using-prompts-in-llm-calls">Using Prompts in LLM Calls<a class="headerlink" href="#using-prompts-in-llm-calls" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">func generateResponse(ctx context.Context, client *opik.Client, query string) (string, error) {
+    // Get the prompt template
+    version, err := client.GetPromptByName(ctx, &quot;assistant-prompt&quot;, &quot;&quot;)
+    if err != nil {
+        return &quot;&quot;, err
+    }
+
+    // Render with variables
+    prompt := version.Render(map[string]string{
+        &quot;role&quot;:  &quot;helpful&quot;,
+        &quot;query&quot;: query,
+        &quot;style&quot;: &quot;concise&quot;,
+    })
+
+    // Create trace
+    trace, _ := client.Trace(ctx, &quot;generate-response&quot;,
+        opik.WithTraceInput(map[string]any{
+            &quot;query&quot;:          query,
+            &quot;prompt_name&quot;:    &quot;assistant-prompt&quot;,
+            &quot;prompt_version&quot;: version.Commit,
+        }),
+    )
+    defer trace.End(ctx)
+
+    // Call LLM with rendered prompt
+    response, err := llmClient.Complete(ctx, prompt)
+    if err != nil {
+        return &quot;&quot;, err
+    }
+
+    trace.End(ctx, opik.WithTraceOutput(map[string]any{&quot;response&quot;: response}))
+
+    return response, nil
+}
+</code></pre>
+<h2 id="prompt-versioning-best-practices">Prompt Versioning Best Practices<a class="headerlink" href="#prompt-versioning-best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Use descriptive names</strong>: Make prompts easy to find</li>
+<li><strong>Add change descriptions</strong>: Document what changed in each version</li>
+<li><strong>Tag prompts</strong>: Use tags for organization (e.g., "production", "experimental")</li>
+<li><strong>Track versions in traces</strong>: Include prompt version in trace metadata</li>
+<li><strong>Test before promoting</strong>: Use experiments to compare prompt versions</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../experiments/" class="btn btn-neutral float-left" title="Experiments"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../streaming/" class="btn btn-neutral float-right" title="Streaming">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../experiments/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../streaming/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

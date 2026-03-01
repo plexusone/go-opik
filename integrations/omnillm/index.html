@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/integrations/omnillm/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>omnillm - Go Opik SDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "omnillm";
+        var mkdocs_page_input_path = "integrations/omnillm.md";
+        var mkdocs_page_url = "/opik-go/integrations/omnillm/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">omnillm</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#three-integration-options">Three Integration Options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#option-1-manual-span-wrapping">Option 1: Manual Span Wrapping</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#when-to-use">When to Use</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#option-2-tracing-wrapper">Option 2: Tracing Wrapper</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tracingclient-methods">TracingClient Methods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#streaming-support">Streaming Support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memory-support">Memory Support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#when-to-use_1">When to Use</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#option-3-evaluation-provider">Option 3: Evaluation Provider</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#provider-options">Provider Options</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#when-to-use_2">When to Use</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#supported-providers">Supported Providers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complete-example-all-three-options">Complete Example: All Three Options</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Integrations</li>
+      <li class="breadcrumb-item active">omnillm</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/integrations/omnillm.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="omnillm-integration">omnillm Integration<a class="headerlink" href="#omnillm-integration" title="Permanent link">&para;</a></h1>
+<p>Integrate with <a href="https://github.com/plexusone/omnillm">omnillm</a>, a unified LLM wrapper library that supports multiple providers (OpenAI, Anthropic, Bedrock, Gemini, Ollama, xAI).</p>
+<pre><code class="language-go">import (
+    &quot;github.com/plexusone/omnillm&quot;
+    opikomnillm &quot;github.com/plexusone/opik-go/integrations/omnillm&quot;
+)
+</code></pre>
+<h2 id="three-integration-options">Three Integration Options<a class="headerlink" href="#three-integration-options" title="Permanent link">&para;</a></h2>
+<p>Choose the approach that best fits your use case:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Use Case</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#option-1-manual-span-wrapping">Manual Span Wrapping</a></td>
+<td>Fine-grained control</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><a href="#option-2-tracing-wrapper">Tracing Wrapper</a></td>
+<td>Automatic tracing</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><a href="#option-3-evaluation-provider">Evaluation Provider</a></td>
+<td>LLM-as-judge</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="option-1-manual-span-wrapping">Option 1: Manual Span Wrapping<a class="headerlink" href="#option-1-manual-span-wrapping" title="Permanent link">&para;</a></h2>
+<p>Wrap individual LLM calls with spans for maximum control.</p>
+<pre><code class="language-go">import (
+    opik &quot;github.com/plexusone/opik-go&quot;
+    &quot;github.com/plexusone/omnillm&quot;
+)
+
+func callLLM(ctx context.Context, client *omnillm.ChatClient, req *omnillm.ChatCompletionRequest) (*omnillm.ChatCompletionResponse, error) {
+    // Get current span/trace from context
+    var span *opik.Span
+    var err error
+
+    if parentSpan := opik.SpanFromContext(ctx); parentSpan != nil {
+        span, err = parentSpan.Span(ctx, &quot;llm.chat&quot;,
+            opik.WithSpanType(opik.SpanTypeLLM),
+            opik.WithSpanModel(req.Model),
+            opik.WithSpanInput(map[string]any{
+                &quot;messages&quot;: req.Messages,
+                &quot;model&quot;:    req.Model,
+            }),
+        )
+    } else if trace := opik.TraceFromContext(ctx); trace != nil {
+        span, err = trace.Span(ctx, &quot;llm.chat&quot;,
+            opik.WithSpanType(opik.SpanTypeLLM),
+            opik.WithSpanModel(req.Model),
+            opik.WithSpanInput(map[string]any{
+                &quot;messages&quot;: req.Messages,
+                &quot;model&quot;:    req.Model,
+            }),
+        )
+    }
+
+    // Make the call
+    startTime := time.Now()
+    resp, respErr := client.CreateChatCompletion(ctx, req)
+    duration := time.Since(startTime)
+
+    // End span with output
+    if span != nil &amp;&amp; err == nil {
+        endOpts := []opik.SpanOption{}
+
+        if resp != nil {
+            endOpts = append(endOpts, opik.WithSpanOutput(map[string]any{
+                &quot;content&quot;: resp.Choices[0].Message.Content,
+                &quot;model&quot;:   resp.Model,
+            }))
+            endOpts = append(endOpts, opik.WithSpanMetadata(map[string]any{
+                &quot;duration_ms&quot;:       duration.Milliseconds(),
+                &quot;prompt_tokens&quot;:     resp.Usage.PromptTokens,
+                &quot;completion_tokens&quot;: resp.Usage.CompletionTokens,
+                &quot;total_tokens&quot;:      resp.Usage.TotalTokens,
+            }))
+        }
+
+        if respErr != nil {
+            endOpts = append(endOpts, opik.WithSpanMetadata(map[string]any{
+                &quot;error&quot;: respErr.Error(),
+            }))
+        }
+
+        span.End(ctx, endOpts...)
+    }
+
+    return resp, respErr
+}
+</code></pre>
+<h3 id="when-to-use">When to Use<a class="headerlink" href="#when-to-use" title="Permanent link">&para;</a></h3>
+<ul>
+<li>You need custom span names or metadata</li>
+<li>You want to trace only specific calls</li>
+<li>You're integrating into existing code gradually</li>
+</ul>
+<hr />
+<h2 id="option-2-tracing-wrapper">Option 2: Tracing Wrapper<a class="headerlink" href="#option-2-tracing-wrapper" title="Permanent link">&para;</a></h2>
+<p>Use the built-in <code>TracingClient</code> wrapper for automatic tracing of all calls.</p>
+<pre><code class="language-go">import (
+    opik &quot;github.com/plexusone/opik-go&quot;
+    opikomnillm &quot;github.com/plexusone/opik-go/integrations/omnillm&quot;
+    &quot;github.com/plexusone/omnillm&quot;
+)
+
+func main() {
+    // Create omnillm client
+    client, _ := omnillm.NewClient(omnillm.ClientConfig{
+        Provider: omnillm.ProviderNameOpenAI,
+        APIKey:   os.Getenv(&quot;OPENAI_API_KEY&quot;),
+    })
+
+    // Create Opik client
+    opikClient, _ := opik.NewClient()
+
+    // Wrap with tracing
+    tracingClient := opikomnillm.NewTracingClient(client, opikClient)
+
+    // Start a trace
+    ctx, trace, _ := opik.StartTrace(ctx, opikClient, &quot;my-task&quot;)
+    defer trace.End(ctx)
+
+    // All calls are automatically traced!
+    resp, _ := tracingClient.CreateChatCompletion(ctx, &amp;omnillm.ChatCompletionRequest{
+        Model: &quot;gpt-4o&quot;,
+        Messages: []omnillm.Message{
+            {Role: omnillm.RoleUser, Content: &quot;Hello!&quot;},
+        },
+    })
+
+    fmt.Println(resp.Choices[0].Message.Content)
+}
+</code></pre>
+<h3 id="tracingclient-methods">TracingClient Methods<a class="headerlink" href="#tracingclient-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CreateChatCompletion</code></td>
+<td>Traced chat completion</td>
+</tr>
+<tr>
+<td><code>CreateChatCompletionStream</code></td>
+<td>Traced streaming completion</td>
+</tr>
+<tr>
+<td><code>CreateChatCompletionWithMemory</code></td>
+<td>Traced completion with memory</td>
+</tr>
+<tr>
+<td><code>Close</code></td>
+<td>Close underlying client</td>
+</tr>
+<tr>
+<td><code>Client</code></td>
+<td>Access underlying omnillm client</td>
+</tr>
+</tbody>
+</table>
+<h3 id="streaming-support">Streaming Support<a class="headerlink" href="#streaming-support" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">stream, _ := tracingClient.CreateChatCompletionStream(ctx, req)
+defer stream.Close()
+
+for {
+    chunk, err := stream.Recv()
+    if err == io.EOF {
+        break
+    }
+    fmt.Print(chunk.Choices[0].Delta.Content)
+}
+// Span automatically ended with accumulated content
+</code></pre>
+<h3 id="memory-support">Memory Support<a class="headerlink" href="#memory-support" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Traced conversation with memory
+resp, _ := tracingClient.CreateChatCompletionWithMemory(ctx, &quot;session-123&quot;, req)
+// Span includes session_id in metadata
+</code></pre>
+<h3 id="when-to-use_1">When to Use<a class="headerlink" href="#when-to-use_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>You want automatic tracing for all LLM calls</li>
+<li>You're building a new application</li>
+<li>You want consistent span formatting</li>
+</ul>
+<hr />
+<h2 id="option-3-evaluation-provider">Option 3: Evaluation Provider<a class="headerlink" href="#option-3-evaluation-provider" title="Permanent link">&para;</a></h2>
+<p>Use omnillm as an LLM provider for evaluation judges.</p>
+<pre><code class="language-go">import (
+    opikomnillm &quot;github.com/plexusone/opik-go/integrations/omnillm&quot;
+    &quot;github.com/plexusone/opik-go/evaluation/llm&quot;
+    &quot;github.com/plexusone/omnillm&quot;
+)
+
+func main() {
+    // Create omnillm client with any provider
+    client, _ := omnillm.NewClient(omnillm.ClientConfig{
+        Provider: omnillm.ProviderNameAnthropic,
+        APIKey:   os.Getenv(&quot;ANTHROPIC_API_KEY&quot;),
+    })
+
+    // Create evaluation provider
+    provider := opikomnillm.NewProvider(client,
+        opikomnillm.WithModel(&quot;claude-sonnet-4-20250514&quot;),
+        opikomnillm.WithTemperature(0.0),
+    )
+
+    // Use with evaluation metrics
+    relevance := llm.NewAnswerRelevance(provider)
+    hallucination := llm.NewHallucination(provider)
+    coherence := llm.NewCoherence(provider)
+
+    // Create evaluation engine
+    engine := evaluation.NewEngine([]evaluation.Metric{
+        relevance,
+        hallucination,
+        coherence,
+    })
+
+    // Evaluate
+    input := evaluation.NewMetricInput(question, answer).
+        WithExpected(expectedAnswer).
+        WithContext(documents)
+
+    result := engine.EvaluateOne(ctx, input)
+}
+</code></pre>
+<h3 id="provider-options">Provider Options<a class="headerlink" href="#provider-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithModel(model)</code></td>
+<td>Set model name</td>
+</tr>
+<tr>
+<td><code>WithTemperature(temp)</code></td>
+<td>Set temperature</td>
+</tr>
+<tr>
+<td><code>WithMaxTokens(max)</code></td>
+<td>Set max tokens</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use_2">When to Use<a class="headerlink" href="#when-to-use_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Running evaluation experiments</li>
+<li>LLM-as-judge workflows</li>
+<li>Comparing outputs across models</li>
+</ul>
+<hr />
+<h2 id="supported-providers">Supported Providers<a class="headerlink" href="#supported-providers" title="Permanent link">&para;</a></h2>
+<p>omnillm supports these providers, all work with the Opik integration:</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Config</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td><code>ProviderNameOpenAI</code></td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td><code>ProviderNameAnthropic</code></td>
+</tr>
+<tr>
+<td>AWS Bedrock</td>
+<td><code>ProviderNameBedrock</code></td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td><code>ProviderNameGemini</code></td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td><code>ProviderNameOllama</code></td>
+</tr>
+<tr>
+<td>xAI (Grok)</td>
+<td><code>ProviderNameXAI</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="complete-example-all-three-options">Complete Example: All Three Options<a class="headerlink" href="#complete-example-all-three-options" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">package main
+
+import (
+    &quot;context&quot;
+    &quot;fmt&quot;
+
+    opik &quot;github.com/plexusone/opik-go&quot;
+    &quot;github.com/plexusone/opik-go/evaluation&quot;
+    &quot;github.com/plexusone/opik-go/evaluation/llm&quot;
+    opikomnillm &quot;github.com/plexusone/opik-go/integrations/omnillm&quot;
+    &quot;github.com/plexusone/omnillm&quot;
+)
+
+func main() {
+    ctx := context.Background()
+
+    // Create omnillm client
+    client, _ := omnillm.NewClient(omnillm.ClientConfig{
+        Provider: omnillm.ProviderNameOpenAI,
+        APIKey:   os.Getenv(&quot;OPENAI_API_KEY&quot;),
+    })
+
+    // Create Opik client
+    opikClient, _ := opik.NewClient()
+
+    // OPTION 2: Tracing wrapper for automatic tracing
+    tracingClient := opikomnillm.NewTracingClient(client, opikClient)
+
+    // OPTION 3: Evaluation provider for LLM judges
+    evalProvider := opikomnillm.NewProvider(client,
+        opikomnillm.WithModel(&quot;gpt-4o&quot;),
+    )
+
+    // Start trace
+    ctx, trace, _ := opik.StartTrace(ctx, opikClient, &quot;demo&quot;)
+    defer trace.End(ctx)
+
+    // Generate response (automatically traced)
+    resp, _ := tracingClient.CreateChatCompletion(ctx, &amp;omnillm.ChatCompletionRequest{
+        Model:    &quot;gpt-4o&quot;,
+        Messages: []omnillm.Message{{Role: omnillm.RoleUser, Content: &quot;What is 2+2?&quot;}},
+    })
+
+    answer := resp.Choices[0].Message.Content
+
+    // Evaluate response
+    metrics := []evaluation.Metric{
+        llm.NewAnswerRelevance(evalProvider),
+        llm.NewCoherence(evalProvider),
+    }
+    engine := evaluation.NewEngine(metrics)
+
+    input := evaluation.NewMetricInput(&quot;What is 2+2?&quot;, answer).WithExpected(&quot;4&quot;)
+    result := engine.EvaluateOne(ctx, input)
+
+    fmt.Printf(&quot;Response: %s\n&quot;, answer)
+    fmt.Printf(&quot;Average score: %.2f\n&quot;, result.AverageScore())
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../anthropic/" class="btn btn-neutral float-left" title="Anthropic"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../http-middleware/" class="btn btn-neutral float-right" title="HTTP Middleware">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../anthropic/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../http-middleware/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

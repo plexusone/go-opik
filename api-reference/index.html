@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://plexusone.github.io/opik-go/api-reference/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Reference - Go Opik SDK</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Reference";
+        var mkdocs_page_input_path = "api-reference.md";
+        var mkdocs_page_url = "/opik-go/api-reference/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Go Opik SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../getting-started/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../getting-started/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../getting-started/testing/">Testing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../getting-started/development/">Development</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Core Concepts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-concepts/traces-and-spans/">Traces and Spans</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-concepts/context-propagation/">Context Propagation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../core-concepts/feedback-scores/">Feedback Scores</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/datasets/">Datasets</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/experiments/">Experiments</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/prompts/">Prompts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/streaming/">Streaming</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../features/batching/">Batching</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../evaluation/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../evaluation/heuristic-metrics/">Heuristic Metrics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../evaluation/llm-judges/">LLM Judges</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrations/openai/">OpenAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrations/anthropic/">Anthropic</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrations/omnillm/">omnillm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrations/http-middleware/">HTTP Middleware</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/agentic-observability/">Agentic Observability</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">CLI Reference</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#client">Client</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-a-client">Creating a Client</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#client-options">Client Options</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#accessing-the-generated-api">Accessing the Generated API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#error-types">Error Types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-details">Error Details</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#types">Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#trace">Trace</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#span">Span</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dataset">Dataset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#experiment">Experiment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prompt">Prompt</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#span-types">Span Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#context-functions">Context Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#distributed-tracing">Distributed Tracing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-utilities">Testing Utilities</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../presentation.html">Presentation</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Go Opik SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/plexusone/opik-go/edit/master/docs/api-reference.md">Edit on plexusone/opik-go</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-client">Creating a Client<a class="headerlink" href="#creating-a-client" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Default client (uses env vars and config file)
+client, err := opik.NewClient()
+
+// With options
+client, err := opik.NewClient(
+    opik.WithURL(&quot;https://www.comet.com/opik/api&quot;),
+    opik.WithAPIKey(&quot;your-api-key&quot;),
+    opik.WithWorkspace(&quot;your-workspace&quot;),
+    opik.WithProjectName(&quot;My Project&quot;),
+    opik.WithHTTPClient(customHTTPClient),
+)
+</code></pre>
+<h3 id="client-options">Client Options<a class="headerlink" href="#client-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithURL(url)</code></td>
+<td>API endpoint URL</td>
+</tr>
+<tr>
+<td><code>WithAPIKey(key)</code></td>
+<td>API key</td>
+</tr>
+<tr>
+<td><code>WithWorkspace(name)</code></td>
+<td>Workspace name</td>
+</tr>
+<tr>
+<td><code>WithProjectName(name)</code></td>
+<td>Default project</td>
+</tr>
+<tr>
+<td><code>WithHTTPClient(client)</code></td>
+<td>Custom HTTP client</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessing-the-generated-api">Accessing the Generated API<a class="headerlink" href="#accessing-the-generated-api" title="Permanent link">&para;</a></h2>
+<p>For advanced usage, access the underlying ogen-generated API client:</p>
+<pre><code class="language-go">api := client.API()
+
+// Use generated methods directly
+resp, err := api.GetProjects(ctx, api.GetProjectsParams{
+    Page: api.NewOptInt32(1),
+    Size: api.NewOptInt32(100),
+})
+</code></pre>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="error-types">Error Types<a class="headerlink" href="#error-types" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Check for specific errors
+if opik.IsNotFound(err) {
+    // Resource doesn't exist
+}
+
+if opik.IsUnauthorized(err) {
+    // Invalid credentials
+}
+
+if opik.IsRateLimited(err) {
+    // Too many requests
+}
+
+if opik.IsBadRequest(err) {
+    // Invalid request parameters
+}
+</code></pre>
+<h3 id="error-details">Error Details<a class="headerlink" href="#error-details" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">if apiErr, ok := err.(*opik.APIError); ok {
+    fmt.Printf(&quot;Status: %d\n&quot;, apiErr.StatusCode)
+    fmt.Printf(&quot;Message: %s\n&quot;, apiErr.Message)
+}
+</code></pre>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
+<h3 id="trace">Trace<a class="headerlink" href="#trace" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">type Trace struct {
+    // Methods
+    ID() string
+    Name() string
+    End(ctx context.Context, opts ...TraceOption) error
+    Update(ctx context.Context, opts ...TraceOption) error
+    Span(ctx context.Context, name string, opts ...SpanOption) (*Span, error)
+    AddFeedbackScore(ctx context.Context, name string, value float64, reason string) error
+}
+</code></pre>
+<h3 id="span">Span<a class="headerlink" href="#span" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">type Span struct {
+    // Methods
+    ID() string
+    TraceID() string
+    Name() string
+    End(ctx context.Context, opts ...SpanOption) error
+    Update(ctx context.Context, opts ...SpanOption) error
+    Span(ctx context.Context, name string, opts ...SpanOption) (*Span, error)
+    AddFeedbackScore(ctx context.Context, name string, value float64, reason string) error
+}
+</code></pre>
+<h3 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">type Dataset struct {
+    // Fields
+    Name        string
+    Description string
+    ID          string
+
+    // Methods
+    ID() string
+    InsertItem(ctx context.Context, data map[string]any) error
+    InsertItems(ctx context.Context, items []map[string]any) error
+    GetItems(ctx context.Context, page, size int) ([]*DatasetItem, error)
+    Delete(ctx context.Context) error
+}
+</code></pre>
+<h3 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">type Experiment struct {
+    // Fields
+    Name string
+    ID   string
+
+    // Methods
+    LogItem(ctx context.Context, itemID, traceID string, opts ...ExperimentItemOption) error
+    Complete(ctx context.Context) error
+    Cancel(ctx context.Context) error
+    Delete(ctx context.Context) error
+}
+</code></pre>
+<h3 id="prompt">Prompt<a class="headerlink" href="#prompt" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">type Prompt struct {
+    // Fields
+    Name        string
+    Description string
+
+    // Methods
+    CreateVersion(ctx context.Context, template string, opts ...VersionOption) (*PromptVersion, error)
+    GetVersions(ctx context.Context, page, size int) ([]*PromptVersion, error)
+}
+
+type PromptVersion struct {
+    // Fields
+    Commit   string
+    Template string
+
+    // Methods
+    Render(vars map[string]string) string
+    ExtractVariables() []string
+}
+</code></pre>
+<h2 id="span-types">Span Types<a class="headerlink" href="#span-types" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">const (
+    SpanTypeLLM     = &quot;llm&quot;
+    SpanTypeTool    = &quot;tool&quot;
+    SpanTypeGeneral = &quot;general&quot;
+)
+</code></pre>
+<h2 id="context-functions">Context Functions<a class="headerlink" href="#context-functions" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Start trace with context
+ctx, trace, err := opik.StartTrace(ctx, client, &quot;name&quot;, opts...)
+
+// Start span with context
+ctx, span, err := opik.StartSpan(ctx, &quot;name&quot;, opts...)
+
+// Get from context
+trace := opik.TraceFromContext(ctx)
+span := opik.SpanFromContext(ctx)
+
+// Add to context
+ctx = opik.ContextWithTrace(ctx, trace)
+ctx = opik.ContextWithSpan(ctx, span)
+</code></pre>
+<h2 id="distributed-tracing">Distributed Tracing<a class="headerlink" href="#distributed-tracing" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Get headers for propagation
+headers := opik.GetDistributedTraceHeaders(ctx)
+
+// Inject into HTTP request
+opik.InjectDistributedTraceHeaders(ctx, req)
+
+// Extract from HTTP request
+headers := opik.ExtractDistributedTraceHeaders(req)
+
+// Continue a distributed trace
+ctx, span, err := client.ContinueTrace(ctx, headers, &quot;name&quot;, opts...)
+</code></pre>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Load configuration
+cfg := opik.LoadConfig()
+
+// Save configuration
+err := opik.SaveConfig(cfg)
+
+// Config struct
+type Config struct {
+    URL         string
+    APIKey      string
+    Workspace   string
+    ProjectName string
+}
+</code></pre>
+<h2 id="testing-utilities">Testing Utilities<a class="headerlink" href="#testing-utilities" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Record traces locally (no server)
+client := opik.RecordTracesLocally(&quot;project-name&quot;)
+
+// Access recorded data
+recording := client.Recording()
+traces := recording.Traces()
+spans := recording.Spans()
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cli/" class="btn btn-neutral float-left" title="CLI Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../presentation.html" class="btn btn-neutral float-right" title="Presentation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/plexusone/opik-go" class="fa fa-code-fork" style="color: #fcfcfc"> plexusone/opik-go</a>
+        </span>
+    
+    
+      <span><a href="../cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../presentation.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
