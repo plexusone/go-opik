@@ -1,6 +1,11 @@
 package opik
 
-import "errors"
+import (
+	"errors"
+	"strings"
+
+	"github.com/plexusone/opik-go/ax"
+)
 
 // Sentinel errors for the Opik SDK.
 var (
@@ -90,4 +95,86 @@ func IsRateLimited(err error) bool {
 		return apiErr.StatusCode == 429
 	}
 	return false
+}
+
+// AXErrorCode extracts the AX error code from the API error, if present.
+// Returns the error code constant (e.g., ax.ErrTraceNotFound) and true if found.
+// Use this for machine-readable error handling:
+//
+//	if apiErr, ok := err.(*APIError); ok {
+//	    if code, ok := apiErr.AXErrorCode(); ok {
+//	        switch code {
+//	        case ax.ErrTraceNotFound:
+//	            // Handle trace not found
+//	        case ax.ErrUnauthorized:
+//	            // Handle auth required
+//	        }
+//	    }
+//	}
+func (e *APIError) AXErrorCode() (string, bool) {
+	// Check Message and Details for known error codes
+	for _, code := range ax.AllErrorCodes {
+		if strings.Contains(e.Message, code) || strings.Contains(e.Details, code) {
+			return code, true
+		}
+	}
+	// Fall back to HTTP status code mapping
+	if code := ax.ErrorCodeForHTTPStatus(e.StatusCode); code != "" {
+		return code, true
+	}
+	return "", false
+}
+
+// HasAXCode checks if the API error contains a specific AX error code.
+func (e *APIError) HasAXCode(code string) bool {
+	axCode, ok := e.AXErrorCode()
+	return ok && axCode == code
+}
+
+// IsAXError checks if an error contains a specific AX error code.
+// This works with any error type by first trying to extract as an APIError.
+//
+// Usage:
+//
+//	if IsAXError(err, ax.ErrTraceNotFound) {
+//	    // Handle trace not found
+//	}
+func IsAXError(err error, code string) bool {
+	if err == nil {
+		return false
+	}
+
+	// Try to get as APIError first for structured checking
+	if apiErr, ok := err.(*APIError); ok {
+		return apiErr.HasAXCode(code)
+	}
+
+	// Fall back to string matching
+	return ax.IsErrorCode(err, code)
+}
+
+// GetAXErrorCode extracts the AX error code from any error.
+// Returns the error code and true if found, empty string and false otherwise.
+func GetAXErrorCode(err error) (string, bool) {
+	if err == nil {
+		return "", false
+	}
+
+	// Try structured extraction first
+	if apiErr, ok := err.(*APIError); ok {
+		return apiErr.AXErrorCode()
+	}
+
+	// Fall back to string matching
+	return ax.ContainsErrorCode(err)
+}
+
+// GetAXErrorInfo returns metadata about an error's AX code, if present.
+// Returns nil if no AX code is found or the code is not recognized.
+func GetAXErrorInfo(err error) *ax.ErrorCodeInfo {
+	code, ok := GetAXErrorCode(err)
+	if !ok {
+		return nil
+	}
+	return ax.GetErrorInfo(code)
 }
