@@ -53,8 +53,10 @@
   --md-primary-fg-color: #06b6d4;
   --md-primary-fg-color--light: #22d3ee;
   --md-primary-fg-color--dark: #0891b2;
-  --md-primary-bg-color: #0a0e1a;
-  --md-primary-bg-color--light: #0f172a;
+  /* Note: --md-primary-bg-color is used for header TEXT color, not background */
+  /* It needs to be light for visibility against the dark header */
+  --md-primary-bg-color: #f1f5f9;
+  --md-primary-bg-color--light: #94a3b8;
 
   --md-accent-fg-color: #8b5cf6;
   --md-accent-fg-color--transparent: #8b5cf61a;
