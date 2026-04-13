@@ -51,7 +51,7 @@ require (
 	github.com/grokify/mogo v0.74.1 // indirect
 	github.com/grokify/sogo v0.14.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-isatty v0.0.21 // indirect
 	github.com/openai/openai-go v1.12.0 // indirect
 	github.com/plexusone/omnillm-anthropic v0.1.0 // indirect
 	github.com/plexusone/omnillm-bedrock v0.5.0 // indirect
@@ -69,7 +69,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.1 // indirect
 	golang.org/x/crypto v0.50.0 // indirect
-	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90 // indirect
+	golang.org/x/exp v0.0.0-20260410095643-746e56fc9e2f // indirect
 	golang.org/x/net v0.53.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.43.0 // indirect
