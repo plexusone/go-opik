@@ -4,7 +4,33 @@ site_url: https://plexusone.github.io/opik-go/
 repo_url: https://github.com/plexusone/opik-go
 repo_name: plexusone/opik-go
 
-theme: readthedocs
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    # Dark mode first (PlexusOne default)
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - https://plexusone.dev/css/plexusone-mkdocs.css
+  - stylesheets/plexusone.css
 
 markdown_extensions:
   - admonition
@@ -46,4 +72,11 @@ nav:
     - v0.4.0: releases/v0.4.0.md
   - CLI Reference: cli.md
   - API Reference: api-reference.md
+  - AX Package:
+    - Overview: ax/overview.md
+    - Error Codes: ax/errors.md
+    - Retry Policies: ax/retry.md
+    - Capabilities: ax/capabilities.md
+  - Case Studies:
+    - AX Integration: case-studies/ax-integration.md
   - Presentation: presentation.html
