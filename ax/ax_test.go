@@ -2,6 +2,7 @@ package ax
 
 import (
 	"errors"
+	"strconv"
 	"testing"
 )
 
@@ -317,7 +318,7 @@ func TestErrorCodeForHTTPStatus(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(string(rune(tt.status)), func(t *testing.T) {
+		t.Run(strconv.Itoa(tt.status), func(t *testing.T) {
 			result := ErrorCodeForHTTPStatus(tt.status)
 			if result != tt.expected {
 				t.Errorf("ErrorCodeForHTTPStatus(%d) = %q, want %q", tt.status, result, tt.expected)
