@@ -7,7 +7,7 @@ require (
 	github.com/go-faster/jx v1.2.0
 	github.com/google/uuid v1.6.0
 	github.com/ogen-go/ogen v1.20.3
-	github.com/plexusone/omnillm v0.15.1
+	github.com/plexusone/omnillm v0.15.2
 	github.com/plexusone/omniobserve v0.8.0
 	go.opentelemetry.io/otel v1.43.0
 	go.opentelemetry.io/otel/metric v1.43.0
@@ -53,11 +53,11 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.21 // indirect
 	github.com/openai/openai-go v1.12.0 // indirect
+	github.com/plexusone/omni-openai v0.2.0 // indirect
 	github.com/plexusone/omnillm-anthropic v0.1.0 // indirect
 	github.com/plexusone/omnillm-bedrock v0.5.0 // indirect
 	github.com/plexusone/omnillm-core v0.15.0 // indirect
 	github.com/plexusone/omnillm-gemini v0.1.0 // indirect
-	github.com/plexusone/omnillm-openai v0.1.0 // indirect
 	github.com/segmentio/asm v1.2.1 // indirect
 	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/tidwall/gjson v1.18.0 // indirect
