@@ -72,7 +72,7 @@ require (
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.68.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	go.uber.org/zap v1.27.1 // indirect
+	go.uber.org/zap v1.28.0 // indirect
 	golang.org/x/crypto v0.50.0 // indirect
 	golang.org/x/exp v0.0.0-20260410095643-746e56fc9e2f // indirect
 	golang.org/x/net v0.53.0 // indirect
@@ -87,3 +87,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+// Exclude jsonschema v0.14.0+ due to incompatibility with anthropic-sdk-go.
+// See: anthropic-sdk-go uses wk8/go-ordered-map but jsonschema v0.14.0 switched to pb33f/ordered-map.
+exclude github.com/invopop/jsonschema v0.14.0
