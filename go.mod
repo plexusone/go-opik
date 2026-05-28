@@ -9,9 +9,9 @@ require (
 	github.com/ogen-go/ogen v1.20.3
 	github.com/plexusone/omnillm v0.15.4
 	github.com/plexusone/omniobserve v0.10.0
-	go.opentelemetry.io/otel v1.43.0
-	go.opentelemetry.io/otel/metric v1.43.0
-	go.opentelemetry.io/otel/trace v1.43.0
+	go.opentelemetry.io/otel v1.44.0
+	go.opentelemetry.io/otel/metric v1.44.0
+	go.opentelemetry.io/otel/trace v1.44.0
 )
 
 require (
