@@ -10,7 +10,7 @@
 
 Go SDK for [Opik](https://github.com/comet-ml/opik) - an open-source LLM observability platform by Comet ML.
 
-**Current Version: v0.5.0** - See [Release Notes](RELEASE_NOTES_v0.5.0.md)
+**Current Version: v0.7.0** - See [Release Notes](docs/releases/v0.7.0.md)
 
 ## Installation
 
