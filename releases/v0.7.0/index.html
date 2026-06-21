@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://plexusone.github.io/opik-go/evaluation/overview/">
+        <link rel="canonical" href="https://plexusone.github.io/opik-go/releases/v0.7.0/">
       
       
-        <link rel="prev" href="../../features/batching/">
+        <link rel="prev" href="../../tutorials/agentic-observability/">
       
       
-        <link rel="next" href="../heuristic-metrics/">
+        <link rel="next" href="../v0.6.0/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Overview - Go Opik SDK</title>
+        <title>v0.7.0 - Go Opik SDK</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#evaluation-framework" class="md-skip">
+        <a href="#release-notes-v070" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              v0.7.0
             
           </span>
         </div>
@@ -719,8 +719,6 @@
       
   
   
-    
-  
   
   
     
@@ -733,11 +731,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -753,7 +753,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Evaluation
@@ -764,32 +764,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../evaluation/overview/" class="md-nav__link">
         
   
   
@@ -800,107 +778,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metric-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metric Interface
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metricinput" class="md-nav__link">
-    <span class="md-ellipsis">
-      MetricInput
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scoreresult" class="md-nav__link">
-    <span class="md-ellipsis">
-      ScoreResult
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluation-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      Evaluation Engine
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dataset-evaluator" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dataset Evaluator
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metric-categories" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metric Categories
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -913,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../heuristic-metrics/" class="md-nav__link">
+      <a href="../../evaluation/heuristic-metrics/" class="md-nav__link">
         
   
   
@@ -936,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../llm-judges/" class="md-nav__link">
+      <a href="../../evaluation/llm-judges/" class="md-nav__link">
         
   
   
@@ -1182,8 +1059,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1194,13 +1073,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1216,7 +1093,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Releases
@@ -1227,10 +1104,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../releases/v0.7.0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    v0.7.0
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1241,6 +1140,95 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Highlights
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Added">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ax-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      AX Package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apierror-ax-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      APIError AX Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1253,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.6.0/" class="md-nav__link">
+      <a href="../v0.6.0/" class="md-nav__link">
         
   
   
@@ -1276,7 +1264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.5.0/" class="md-nav__link">
+      <a href="../v0.5.0/" class="md-nav__link">
         
   
   
@@ -1299,7 +1287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.4.0/" class="md-nav__link">
+      <a href="../v0.4.0/" class="md-nav__link">
         
   
   
@@ -1634,81 +1622,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#highlights" class="md-nav__link">
     <span class="md-ellipsis">
-      Architecture
+      Highlights
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-example" class="md-nav__link">
+  <a href="#added" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Example
+      Added
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Added">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ax-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      AX Package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apierror-ax-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      APIError AX Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#metric-interface" class="md-nav__link">
+  <a href="#dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Metric Interface
+      Dependencies
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#metricinput" class="md-nav__link">
+  <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      MetricInput
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scoreresult" class="md-nav__link">
-    <span class="md-ellipsis">
-      ScoreResult
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluation-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      Evaluation Engine
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dataset-evaluator" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dataset Evaluator
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metric-categories" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metric Categories
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
+      Documentation
     </span>
   </a>
   
@@ -1733,151 +1709,75 @@
   
 
 
-<h1 id="evaluation-framework">Evaluation Framework<a class="headerlink" href="#evaluation-framework" title="Permanent link">&para;</a></h1>
-<p>The evaluation framework provides tools for measuring LLM output quality using both rule-based heuristics and LLM-as-judge approaches.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<pre><code>evaluation/
-├── Metric           # Interface for all metrics
-├── MetricInput      # Input data for evaluation
-├── ScoreResult      # Result of a metric evaluation
-├── Engine           # Runs multiple metrics concurrently
-├── heuristic/       # Rule-based metrics
-│   ├── string.go    # String matching (equals, contains)
-│   ├── parsing.go   # Format validation (JSON, XML)
-│   ├── pattern.go   # Regex and format patterns
-│   └── similarity.go # Text similarity (BLEU, ROUGE)
-└── llm/             # LLM-based judge metrics
-    ├── provider.go  # LLM provider interface
-    └── metrics.go   # Judge metrics (relevance, hallucination)
+<h1 id="release-notes-v070">Release Notes v0.7.0<a class="headerlink" href="#release-notes-v070" title="Permanent link">&para;</a></h1>
+<p><strong>Release Date:</strong> June 20, 2026</p>
+<h2 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">&para;</a></h2>
+<ul>
+<li>New <code>ax</code> package providing Agent Experience (AX) metadata for programmatic error handling, retry decisions, and request validation</li>
+<li>AX error code integration with the SDK's <code>APIError</code> type</li>
+</ul>
+<h2 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h2>
+<h3 id="ax-package">AX Package<a class="headerlink" href="#ax-package" title="Permanent link">&para;</a></h3>
+<p>The new <code>ax</code> package enables AI agents to handle errors intelligently and make informed retry decisions:</p>
+<pre><code class="language-go">import &quot;github.com/plexusone/opik-go/ax&quot;
 </code></pre>
-<h2 id="quick-example">Quick Example<a class="headerlink" href="#quick-example" title="Permanent link">&para;</a></h2>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>19 domain-specific error codes</strong> for LLM observability operations</li>
+<li><strong>201 operations mapped</strong> with retry safety policies</li>
+<li><strong>67 operations</strong> with required field definitions</li>
+<li><strong>7 capability types</strong> for operation introspection</li>
+</ul>
+<p><strong>Example usage:</strong></p>
 <pre><code class="language-go">import (
-    &quot;github.com/plexusone/opik-go/evaluation&quot;
-    &quot;github.com/plexusone/opik-go/evaluation/heuristic&quot;
+    &quot;github.com/plexusone/opik-go&quot;
+    &quot;github.com/plexusone/opik-go/ax&quot;
 )
 
-// Create metrics
-metrics := []evaluation.Metric{
-    heuristic.NewEquals(false),           // Case-insensitive equality
-    heuristic.NewContains(false),         // Substring check
-    heuristic.NewIsJSON(),                // JSON validation
-}
+trace, err := client.GetTrace(ctx, traceID)
+if err != nil {
+    code, ok := opik.GetAXErrorCode(err)
+    if !ok {
+        return nil, err
+    }
 
-// Create engine
-engine := evaluation.NewEngine(metrics,
-    evaluation.WithConcurrency(4),
-)
-
-// Create input
-input := evaluation.NewMetricInput(&quot;What is 2+2?&quot;, &quot;The answer is 4.&quot;)
-input = input.WithExpected(&quot;4&quot;)
-
-// Evaluate
-result := engine.EvaluateOne(ctx, input)
-
-fmt.Printf(&quot;Average score: %.2f\n&quot;, result.AverageScore())
-for name, score := range result.Scores {
-    fmt.Printf(&quot;  %s: %.2f\n&quot;, name, score.Value)
+    switch code {
+    case ax.ErrTraceNotFound:
+        return client.CreateTrace(ctx, &amp;Trace{ID: traceID})
+    case ax.ErrRateLimited:
+        time.Sleep(time.Second)
+        return client.GetTrace(ctx, traceID)
+    }
 }
 </code></pre>
-<h2 id="metric-interface">Metric Interface<a class="headerlink" href="#metric-interface" title="Permanent link">&para;</a></h2>
-<p>All metrics implement this interface:</p>
-<pre><code class="language-go">type Metric interface {
-    Name() string
-    Score(ctx context.Context, input MetricInput) *ScoreResult
-}
-</code></pre>
-<h2 id="metricinput">MetricInput<a class="headerlink" href="#metricinput" title="Permanent link">&para;</a></h2>
-<p>Contains all data needed for evaluation:</p>
-<pre><code class="language-go">type MetricInput struct {
-    Input    string         // The original input/prompt
-    Output   string         // The LLM's output to evaluate
-    Expected string         // Expected/ground truth output
-    Context  string         // Additional context
-    Metadata map[string]any // Any extra data
-}
-
-// Create input
-input := evaluation.NewMetricInput(prompt, llmOutput)
-input = input.WithExpected(expectedOutput)
-input = input.WithContext(additionalContext)
-</code></pre>
-<h2 id="scoreresult">ScoreResult<a class="headerlink" href="#scoreresult" title="Permanent link">&para;</a></h2>
-<p>Contains the evaluation result:</p>
-<pre><code class="language-go">type ScoreResult struct {
-    Name     string         // Metric name
-    Value    float64        // Score (typically 0.0 to 1.0)
-    Reason   string         // Explanation for the score
-    Metadata map[string]any // Additional data
-    Error    error          // Error if evaluation failed
-}
-
-// Helper constructors
-score := evaluation.NewScoreResult(&quot;accuracy&quot;, 0.95)
-score := evaluation.NewScoreResultWithReason(&quot;accuracy&quot;, 0.95, &quot;Exact match found&quot;)
-score := evaluation.BooleanScore(&quot;is_valid&quot;, true) // 1.0 for true, 0.0 for false
-</code></pre>
-<h2 id="evaluation-engine">Evaluation Engine<a class="headerlink" href="#evaluation-engine" title="Permanent link">&para;</a></h2>
-<p>Run multiple metrics concurrently:</p>
-<pre><code class="language-go">// Create engine with options
-engine := evaluation.NewEngine(metrics,
-    evaluation.WithConcurrency(4),  // Run 4 metrics in parallel
-)
-
-// Evaluate single input
-result := engine.EvaluateOne(ctx, input)
-
-// Evaluate multiple inputs
-inputs := []evaluation.MetricInput{input1, input2, input3}
-results := engine.EvaluateMany(ctx, inputs)
-
-// Evaluate with item IDs (for datasets)
-itemResults := engine.EvaluateWithIDs(ctx, map[string]evaluation.MetricInput{
-    &quot;item-1&quot;: input1,
-    &quot;item-2&quot;: input2,
-})
-</code></pre>
-<h2 id="dataset-evaluator">Dataset Evaluator<a class="headerlink" href="#dataset-evaluator" title="Permanent link">&para;</a></h2>
-<p>Evaluate entire datasets:</p>
-<pre><code class="language-go">evaluator := evaluation.NewDatasetEvaluator(engine, client)
-
-results, err := evaluator.Evaluate(ctx, dataset,
-    func(item map[string]any) string {
-        // Generate output for each dataset item
-        return llmClient.Complete(item[&quot;input&quot;].(string))
-    },
-)
-</code></pre>
-<h2 id="metric-categories">Metric Categories<a class="headerlink" href="#metric-categories" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Category</th>
-<th>Description</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../heuristic-metrics/">Heuristic</a></td>
-<td>Rule-based, deterministic</td>
-<td>Equals, Contains, IsJSON, BLEU</td>
-</tr>
-<tr>
-<td><a href="../llm-judges/">LLM Judge</a></td>
-<td>Uses LLM to evaluate</td>
-<td>Relevance, Hallucination, Factuality</td>
-</tr>
-</tbody>
-</table>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Combine metrics</strong>: Use multiple metrics for comprehensive evaluation</li>
-<li><strong>Use heuristics first</strong>: They're faster and cheaper than LLM judges</li>
-<li><strong>Set appropriate concurrency</strong>: Balance speed vs. rate limits</li>
-<li><strong>Handle errors</strong>: Check <code>ScoreResult.Error</code> for failed evaluations</li>
-<li><strong>Log to traces</strong>: Add scores as feedback to traces for tracking</li>
-</ol>
+<h3 id="apierror-ax-integration">APIError AX Integration<a class="headerlink" href="#apierror-ax-integration" title="Permanent link">&para;</a></h3>
+<p>New helper methods on <code>APIError</code> for extracting and checking AX error codes:</p>
+<ul>
+<li><code>APIError.AXErrorCode()</code> - extract AX code from API error</li>
+<li><code>APIError.HasAXCode()</code> - check for specific AX code</li>
+<li><code>IsAXError()</code> - check any error for AX code</li>
+<li><code>GetAXErrorCode()</code> - extract AX code from any error</li>
+<li><code>GetAXErrorInfo()</code> - get metadata about error code</li>
+</ul>
+<h2 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Linter warning for <code>strconv</code> usage</li>
+</ul>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Upgraded <code>github.com/plexusone/omnillm</code> from v0.13.0 to v0.16.1</li>
+<li>Upgraded <code>github.com/plexusone/omniobserve</code> from v0.7.0 to v0.11.0</li>
+<li>Upgraded <code>github.com/ogen-go/ogen</code> from v1.20.1 to v1.22.0</li>
+<li>Upgraded <code>go.opentelemetry.io/otel/trace</code> from v1.40.0 to v1.44.0</li>
+<li>Upgraded <code>go.opentelemetry.io/otel/metric</code> from v1.40.0 to v1.44.0</li>
+<li>Updated <code>github.com/invopop/jsonschema</code> to v0.14.0 (resolves ordered-map conflict with anthropic-sdk-go)</li>
+</ul>
+<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added AX package documentation (overview, error codes, retry policies, capabilities)</li>
+<li>Added AX integration case study</li>
+<li>Applied PlexusOne unified theme to MkDocs site</li>
+</ul>
 
 
 
