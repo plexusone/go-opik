@@ -7,6 +7,41 @@
   "commitConvention": "conventional",
   "releases": [
     {
+      "version": "v0.7.0",
+      "date": "2026-06-20",
+      "highlights": [
+        { "description": "New `ax` package providing Agent Experience (AX) metadata for programmatic error handling" },
+        { "description": "AX error code integration with SDK's `APIError` type" }
+      ],
+      "added": [
+        { "description": "`ax` package with 19 domain-specific error codes for LLM observability", "commit": "721136e" },
+        { "description": "`ax` retry policies for 201 operations with retry safety mapping", "commit": "721136e" },
+        { "description": "`ax` required field definitions for 67 operations", "commit": "721136e" },
+        { "description": "`ax` capability mapping for 7 capability types", "commit": "721136e" },
+        { "description": "`APIError.AXErrorCode()` helper method", "commit": "7fc2f9a" },
+        { "description": "`APIError.HasAXCode()` helper method", "commit": "7fc2f9a" },
+        { "description": "`IsAXError()` function for checking any error", "commit": "7fc2f9a" },
+        { "description": "`GetAXErrorCode()` function for extracting AX code", "commit": "7fc2f9a" },
+        { "description": "`GetAXErrorInfo()` function for error metadata", "commit": "7fc2f9a" }
+      ],
+      "fixed": [
+        { "description": "Linter warning for `strconv` usage", "commit": "998f72c" }
+      ],
+      "dependencies": [
+        { "description": "Upgraded `github.com/plexusone/omnillm` from v0.13.0 to v0.16.1" },
+        { "description": "Upgraded `github.com/plexusone/omniobserve` from v0.7.0 to v0.11.0" },
+        { "description": "Upgraded `github.com/ogen-go/ogen` from v1.20.1 to v1.22.0" },
+        { "description": "Upgraded `go.opentelemetry.io/otel/trace` from v1.40.0 to v1.44.0" },
+        { "description": "Upgraded `go.opentelemetry.io/otel/metric` from v1.40.0 to v1.44.0" },
+        { "description": "Updated `github.com/invopop/jsonschema` to v0.14.0 (resolves ordered-map conflict)" }
+      ],
+      "documentation": [
+        { "description": "Added AX package documentation", "commit": "8e25d2d" },
+        { "description": "Added AX integration case study", "commit": "b63fcec" },
+        { "description": "Applied PlexusOne unified theme to MkDocs site", "commit": "bfd7ad3" }
+      ]
+    },
+    {
       "version": "v0.6.0",
       "date": "2026-03-01",
       "highlights": [
