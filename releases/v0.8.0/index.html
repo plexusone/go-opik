@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://plexusone.github.io/opik-go/core-concepts/context-propagation/">
+        <link rel="canonical" href="https://plexusone.github.io/opik-go/releases/v0.8.0/">
       
       
-        <link rel="prev" href="../traces-and-spans/">
+        <link rel="prev" href="../../tutorials/agentic-observability/">
       
       
-        <link rel="next" href="../feedback-scores/">
+        <link rel="next" href="../v0.7.0/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Context Propagation - Go Opik SDK</title>
+        <title>v0.8.0 - Go Opik SDK</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#context-propagation" class="md-skip">
+        <a href="#release-v080" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Context Propagation
+              v0.8.0
             
           </span>
         </div>
@@ -431,8 +431,6 @@
       
   
   
-    
-  
   
   
     
@@ -445,11 +443,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -465,7 +465,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core Concepts
@@ -479,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../traces-and-spans/" class="md-nav__link">
+      <a href="../../core-concepts/traces-and-spans/" class="md-nav__link">
         
   
   
@@ -499,32 +499,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Context Propagation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../core-concepts/context-propagation/" class="md-nav__link">
         
   
   
@@ -535,113 +513,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#starting-traces-with-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting Traces with Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-spans-with-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting Spans with Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#retrieving-from-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Retrieving from Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Practical Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distributed-tracing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distributed Tracing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Distributed Tracing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#injecting-headers-client-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      Injecting Headers (Client Side)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extracting-headers-server-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extracting Headers (Server Side)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#propagating-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Propagating HTTP Client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#header-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      Header Format
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -654,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../feedback-scores/" class="md-nav__link">
+      <a href="../../core-concepts/feedback-scores/" class="md-nav__link">
         
   
   
@@ -1211,8 +1082,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1223,13 +1096,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1245,7 +1116,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Releases
@@ -1256,10 +1127,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../releases/v0.8.0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    v0.8.0
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1270,6 +1163,104 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent-observability-package-agentobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Observability Package (agentobs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#omniagent-integration-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      OmniAgent Integration Support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1282,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.7.0/" class="md-nav__link">
+      <a href="../v0.7.0/" class="md-nav__link">
         
   
   
@@ -1305,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.6.0/" class="md-nav__link">
+      <a href="../v0.6.0/" class="md-nav__link">
         
   
   
@@ -1328,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.5.0/" class="md-nav__link">
+      <a href="../v0.5.0/" class="md-nav__link">
         
   
   
@@ -1351,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v0.4.0/" class="md-nav__link">
+      <a href="../v0.4.0/" class="md-nav__link">
         
   
   
@@ -1686,73 +1677,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#starting-traces-with-context" class="md-nav__link">
+  <a href="#new-features" class="md-nav__link">
     <span class="md-ellipsis">
-      Starting Traces with Context
+      New Features
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-spans-with-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting Spans with Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#retrieving-from-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Retrieving from Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Practical Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distributed-tracing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distributed Tracing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Distributed Tracing">
+    <nav class="md-nav" aria-label="New Features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#injecting-headers-client-side" class="md-nav__link">
+  <a href="#agent-observability-package-agentobs" class="md-nav__link">
     <span class="md-ellipsis">
-      Injecting Headers (Client Side)
+      Agent Observability Package (agentobs)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#extracting-headers-server-side" class="md-nav__link">
+  <a href="#omniagent-integration-support" class="md-nav__link">
     <span class="md-ellipsis">
-      Extracting Headers (Server Side)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#propagating-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Propagating HTTP Client
+      OmniAgent Integration Support
     </span>
   </a>
   
@@ -1764,9 +1710,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#header-format" class="md-nav__link">
+  <a href="#event-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Header Format
+      Event Mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
     </span>
   </a>
   
@@ -1791,130 +1773,100 @@
   
 
 
-<h1 id="context-propagation">Context Propagation<a class="headerlink" href="#context-propagation" title="Permanent link">&para;</a></h1>
-<p>The SDK uses Go's <code>context.Context</code> for automatic trace and span propagation. This enables:</p>
+<h1 id="release-v080">Release v0.8.0<a class="headerlink" href="#release-v080" title="Permanent link">&para;</a></h1>
+<p><strong>Release Date:</strong> 2026-06-22</p>
+<h2 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
+<h3 id="agent-observability-package-agentobs">Agent Observability Package (<code>agentobs</code>)<a class="headerlink" href="#agent-observability-package-agentobs" title="Permanent link">&para;</a></h3>
+<p>New <code>opik-go/agentobs</code> package providing generic agent observability interfaces:</p>
 <ul>
-<li>Automatic parent-child span relationships</li>
-<li>Easy access to current trace/span from anywhere</li>
-<li>Clean API without passing trace objects everywhere</li>
+<li><strong>AgentEvent</strong>: Generic event type for agent lifecycle events (session, message, tool, job)</li>
+<li><strong>TraceManager</strong>: Session-based trace lifecycle management with stale cleanup</li>
+<li><strong>Sanitization</strong>: Content sanitization utilities to redact secrets and internal markers</li>
+<li><strong>Media Extraction</strong>: Extract media references (images, files, data URLs) from content</li>
+<li><strong>Observer Interface</strong>: Generic interface for observability backends</li>
 </ul>
-<h2 id="starting-traces-with-context">Starting Traces with Context<a class="headerlink" href="#starting-traces-with-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Start a trace and get updated context
-ctx, trace, _ := opik.StartTrace(ctx, client, &quot;my-trace&quot;)
+<pre><code class="language-go">import &quot;github.com/plexusone/opik-go/agentobs&quot;
 
-// The trace is now in the context
-currentTrace := opik.TraceFromContext(ctx)
+// Create events
+event := agentobs.NewEvent(agentobs.EventMessageReceived).
+    WithSession(&quot;session-123&quot;).
+    WithData(&quot;content&quot;, &quot;Hello!&quot;)
+
+// Sanitize content
+clean := agentobs.Sanitize(content, agentobs.DefaultSanitizeConfig())
+
+// Extract media
+refs := agentobs.ExtractMedia(messageContent)
 </code></pre>
-<h2 id="starting-spans-with-context">Starting Spans with Context<a class="headerlink" href="#starting-spans-with-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Start a span - automatically nested under current span/trace
-ctx, span, _ := opik.StartSpan(ctx, &quot;my-span&quot;)
+<h3 id="omniagent-integration-support">OmniAgent Integration Support<a class="headerlink" href="#omniagent-integration-support" title="Permanent link">&para;</a></h3>
+<p>The <code>agentobs</code> package provides building blocks for integrating with <a href="https://github.com/plexusone/omniagent">omniagent</a>:</p>
+<ul>
+<li><code>TraceManager</code> for session-based trace lifecycle with stale cleanup</li>
+<li><code>Sanitize()</code> and <code>SanitizeMap()</code> for content sanitization</li>
+<li><code>ExtractMedia()</code> for extracting media references from content</li>
+<li>Generic <code>AgentEvent</code> type for event conversion</li>
+</ul>
+<p>OmniAgent is observability-agnostic—integrations are built in your application code:</p>
+<pre><code class="language-go">import opikintegration &quot;my-agent/integrations/opik&quot;  // Your app's integration
 
-// Start another span - automatically nested under the previous span
-ctx, childSpan, _ := opik.StartSpan(ctx, &quot;child-span&quot;)
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(opikClient),
+    opikintegration.WithTags(&quot;env:production&quot;),
+)
+
+agent, _ := agent.New(config,
+    agent.WithCompiledHook(opikHook),
+)
 </code></pre>
-<h2 id="retrieving-from-context">Retrieving from Context<a class="headerlink" href="#retrieving-from-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Get current trace
-trace := opik.TraceFromContext(ctx)
-if trace != nil {
-    fmt.Printf(&quot;Current trace: %s\n&quot;, trace.ID())
-}
-
-// Get current span
-span := opik.SpanFromContext(ctx)
-if span != nil {
-    fmt.Printf(&quot;Current span: %s\n&quot;, span.ID())
-}
-</code></pre>
-<h2 id="practical-example">Practical Example<a class="headerlink" href="#practical-example" title="Permanent link">&para;</a></h2>
-<p>Context propagation makes it easy to add tracing to existing code:</p>
-<pre><code class="language-go">func HandleRequest(ctx context.Context, req *Request) (*Response, error) {
-    // Start trace at entry point
-    ctx, trace, _ := opik.StartTrace(ctx, client, &quot;handle-request&quot;,
-        opik.WithTraceInput(req),
-    )
-    defer trace.End(ctx)
-
-    // Call nested functions - they can access trace via context
-    result, err := processRequest(ctx, req)
-    if err != nil {
-        return nil, err
-    }
-
-    trace.End(ctx, opik.WithTraceOutput(result))
-    return result, nil
-}
-
-func processRequest(ctx context.Context, req *Request) (*Response, error) {
-    // Create span - automatically nested under trace
-    ctx, span, _ := opik.StartSpan(ctx, &quot;process-request&quot;)
-    defer span.End(ctx)
-
-    // Call LLM
-    return callLLM(ctx, req.Query)
-}
-
-func callLLM(ctx context.Context, query string) (*Response, error) {
-    // Create LLM span - automatically nested under process-request span
-    ctx, span, _ := opik.StartSpan(ctx, &quot;llm-call&quot;,
-        opik.WithSpanType(opik.SpanTypeLLM),
-        opik.WithSpanModel(&quot;gpt-4&quot;),
-    )
-    defer span.End(ctx)
-
-    // Make the actual LLM call
-    response, err := llmClient.Complete(ctx, query)
-
-    span.End(ctx, opik.WithSpanOutput(map[string]any{&quot;response&quot;: response}))
-    return response, err
-}
-</code></pre>
-<h2 id="distributed-tracing">Distributed Tracing<a class="headerlink" href="#distributed-tracing" title="Permanent link">&para;</a></h2>
-<p>For microservices, propagate trace context across HTTP boundaries:</p>
-<h3 id="injecting-headers-client-side">Injecting Headers (Client Side)<a class="headerlink" href="#injecting-headers-client-side" title="Permanent link">&para;</a></h3>
-<pre><code class="language-go">// Inject trace headers into outgoing request
-req, _ := http.NewRequestWithContext(ctx, &quot;POST&quot;, url, body)
-opik.InjectDistributedTraceHeaders(ctx, req)
-</code></pre>
-<h3 id="extracting-headers-server-side">Extracting Headers (Server Side)<a class="headerlink" href="#extracting-headers-server-side" title="Permanent link">&para;</a></h3>
-<pre><code class="language-go">func handler(w http.ResponseWriter, r *http.Request) {
-    // Extract trace headers
-    headers := opik.ExtractDistributedTraceHeaders(r)
-
-    // Continue the distributed trace
-    ctx, span, _ := client.ContinueTrace(r.Context(), headers, &quot;handle-request&quot;)
-    defer span.End(ctx)
-
-    // Process request...
-}
-</code></pre>
-<h3 id="propagating-http-client">Propagating HTTP Client<a class="headerlink" href="#propagating-http-client" title="Permanent link">&para;</a></h3>
-<p>Use the built-in propagating client:</p>
-<pre><code class="language-go">// Create client that auto-injects trace headers
-httpClient := opik.PropagatingHTTPClient()
-
-// All requests will include trace headers
-resp, _ := httpClient.Do(req.WithContext(ctx))
-</code></pre>
-<h2 id="header-format">Header Format<a class="headerlink" href="#header-format" title="Permanent link">&para;</a></h2>
-<p>The SDK uses these headers for distributed tracing:</p>
+<h2 id="event-mapping">Event Mapping<a class="headerlink" href="#event-mapping" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Header</th>
-<th>Description</th>
+<th>OmniAgent Event</th>
+<th>Opik Action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>X-Opik-Trace-ID</code></td>
-<td>The trace ID</td>
+<td><code>EventSessionCreated</code></td>
+<td>Create trace <code>agent.session.{id}</code></td>
 </tr>
 <tr>
-<td><code>X-Opik-Parent-Span-ID</code></td>
-<td>The parent span ID</td>
+<td><code>EventMessageReceived</code></td>
+<td>Create span <code>message.user</code></td>
+</tr>
+<tr>
+<td><code>EventToolCalled</code></td>
+<td>Create span <code>tool.{name}</code></td>
+</tr>
+<tr>
+<td><code>EventToolCompleted</code></td>
+<td>End tool span with result/error</td>
+</tr>
+<tr>
+<td><code>EventMessageSent</code></td>
+<td>Create span <code>message.assistant</code></td>
+</tr>
+<tr>
+<td><code>EventSessionUpdated</code></td>
+<td>Touch trace (reset stale timer)</td>
 </tr>
 </tbody>
 </table>
+<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>New <a href="../../integrations/omniagent/">OmniAgent Integration</a> guide</li>
+<li>Updated README with agent framework examples</li>
+</ul>
+<h2 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
+<p>None.</p>
+<h2 id="migration-guide">Migration Guide<a class="headerlink" href="#migration-guide" title="Permanent link">&para;</a></h2>
+<p>No migration required. The new packages are additive.</p>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Requires Go 1.21+</li>
+<li>Compatible with omniagent v0.x+</li>
+</ul>
 
 
 

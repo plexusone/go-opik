@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://plexusone.github.io/opik-go/core-concepts/context-propagation/">
+        <link rel="canonical" href="https://plexusone.github.io/opik-go/integrations/omniagent/">
       
       
-        <link rel="prev" href="../traces-and-spans/">
+        <link rel="prev" href="../omnillm/">
       
       
-        <link rel="next" href="../feedback-scores/">
+        <link rel="next" href="../http-middleware/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Context Propagation - Go Opik SDK</title>
+        <title>omniagent - Go Opik SDK</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#context-propagation" class="md-skip">
+        <a href="#omniagent-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Context Propagation
+              omniagent
             
           </span>
         </div>
@@ -431,8 +431,6 @@
       
   
   
-    
-  
   
   
     
@@ -445,11 +443,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -465,7 +465,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core Concepts
@@ -479,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../traces-and-spans/" class="md-nav__link">
+      <a href="../../core-concepts/traces-and-spans/" class="md-nav__link">
         
   
   
@@ -499,32 +499,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Context Propagation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../core-concepts/context-propagation/" class="md-nav__link">
         
   
   
@@ -535,113 +513,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#starting-traces-with-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting Traces with Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-spans-with-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting Spans with Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#retrieving-from-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      Retrieving from Context
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Practical Example
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distributed-tracing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distributed Tracing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Distributed Tracing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#injecting-headers-client-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      Injecting Headers (Client Side)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extracting-headers-server-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extracting Headers (Server Side)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#propagating-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Propagating HTTP Client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#header-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      Header Format
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -654,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../feedback-scores/" class="md-nav__link">
+      <a href="../../core-concepts/feedback-scores/" class="md-nav__link">
         
   
   
@@ -969,8 +840,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -981,13 +854,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -1003,7 +874,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Integrations
@@ -1017,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/openai/" class="md-nav__link">
+      <a href="../openai/" class="md-nav__link">
         
   
   
@@ -1040,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/anthropic/" class="md-nav__link">
+      <a href="../anthropic/" class="md-nav__link">
         
   
   
@@ -1063,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/omnillm/" class="md-nav__link">
+      <a href="../omnillm/" class="md-nav__link">
         
   
   
@@ -1083,10 +954,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../integrations/omniagent/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    omniagent
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1097,6 +990,194 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stale-trace-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stale Trace Cleanup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-sanitization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Sanitization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#media-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media Extraction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-trace-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Trace Correlation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-trace-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Trace Context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agentobs-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      The agentobs Package
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The agentobs Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanitization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-extraction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      TraceManager
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Traces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1109,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/http-middleware/" class="md-nav__link">
+      <a href="../http-middleware/" class="md-nav__link">
         
   
   
@@ -1686,73 +1767,136 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#starting-traces-with-context" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Starting Traces with Context
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-spans-with-context" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Starting Spans with Context
+      Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#retrieving-from-context" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieving from Context
+      Quick Start
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-example" class="md-nav__link">
+  <a href="#event-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Practical Example
+      Event Mapping
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#distributed-tracing" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Distributed Tracing
+      Configuration Options
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Distributed Tracing">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stale-trace-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stale Trace Cleanup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-sanitization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Sanitization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#media-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media Extraction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-trace-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Trace Correlation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-trace-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Trace Context
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agentobs-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      The agentobs Package
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The agentobs Package">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#injecting-headers-client-side" class="md-nav__link">
+  <a href="#event-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Injecting Headers (Client Side)
+      Event Types
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#extracting-headers-server-side" class="md-nav__link">
+  <a href="#sanitization" class="md-nav__link">
     <span class="md-ellipsis">
-      Extracting Headers (Server Side)
+      Sanitization
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#propagating-http-client" class="md-nav__link">
+  <a href="#media-extraction_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Propagating HTTP Client
+      Media Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      TraceManager
     </span>
   </a>
   
@@ -1764,9 +1908,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#header-format" class="md-nav__link">
+  <a href="#viewing-traces" class="md-nav__link">
     <span class="md-ellipsis">
-      Header Format
+      Viewing Traces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
     </span>
   </a>
   
@@ -1791,130 +1953,316 @@
   
 
 
-<h1 id="context-propagation">Context Propagation<a class="headerlink" href="#context-propagation" title="Permanent link">&para;</a></h1>
-<p>The SDK uses Go's <code>context.Context</code> for automatic trace and span propagation. This enables:</p>
-<ul>
-<li>Automatic parent-child span relationships</li>
-<li>Easy access to current trace/span from anywhere</li>
-<li>Clean API without passing trace objects everywhere</li>
-</ul>
-<h2 id="starting-traces-with-context">Starting Traces with Context<a class="headerlink" href="#starting-traces-with-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Start a trace and get updated context
-ctx, trace, _ := opik.StartTrace(ctx, client, &quot;my-trace&quot;)
-
-// The trace is now in the context
-currentTrace := opik.TraceFromContext(ctx)
-</code></pre>
-<h2 id="starting-spans-with-context">Starting Spans with Context<a class="headerlink" href="#starting-spans-with-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Start a span - automatically nested under current span/trace
-ctx, span, _ := opik.StartSpan(ctx, &quot;my-span&quot;)
-
-// Start another span - automatically nested under the previous span
-ctx, childSpan, _ := opik.StartSpan(ctx, &quot;child-span&quot;)
-</code></pre>
-<h2 id="retrieving-from-context">Retrieving from Context<a class="headerlink" href="#retrieving-from-context" title="Permanent link">&para;</a></h2>
-<pre><code class="language-go">// Get current trace
-trace := opik.TraceFromContext(ctx)
-if trace != nil {
-    fmt.Printf(&quot;Current trace: %s\n&quot;, trace.ID())
-}
-
-// Get current span
-span := opik.SpanFromContext(ctx)
-if span != nil {
-    fmt.Printf(&quot;Current span: %s\n&quot;, span.ID())
-}
-</code></pre>
-<h2 id="practical-example">Practical Example<a class="headerlink" href="#practical-example" title="Permanent link">&para;</a></h2>
-<p>Context propagation makes it easy to add tracing to existing code:</p>
-<pre><code class="language-go">func HandleRequest(ctx context.Context, req *Request) (*Response, error) {
-    // Start trace at entry point
-    ctx, trace, _ := opik.StartTrace(ctx, client, &quot;handle-request&quot;,
-        opik.WithTraceInput(req),
-    )
-    defer trace.End(ctx)
-
-    // Call nested functions - they can access trace via context
-    result, err := processRequest(ctx, req)
-    if err != nil {
-        return nil, err
-    }
-
-    trace.End(ctx, opik.WithTraceOutput(result))
-    return result, nil
-}
-
-func processRequest(ctx context.Context, req *Request) (*Response, error) {
-    // Create span - automatically nested under trace
-    ctx, span, _ := opik.StartSpan(ctx, &quot;process-request&quot;)
-    defer span.End(ctx)
-
-    // Call LLM
-    return callLLM(ctx, req.Query)
-}
-
-func callLLM(ctx context.Context, query string) (*Response, error) {
-    // Create LLM span - automatically nested under process-request span
-    ctx, span, _ := opik.StartSpan(ctx, &quot;llm-call&quot;,
-        opik.WithSpanType(opik.SpanTypeLLM),
-        opik.WithSpanModel(&quot;gpt-4&quot;),
-    )
-    defer span.End(ctx)
-
-    // Make the actual LLM call
-    response, err := llmClient.Complete(ctx, query)
-
-    span.End(ctx, opik.WithSpanOutput(map[string]any{&quot;response&quot;: response}))
-    return response, err
-}
-</code></pre>
-<h2 id="distributed-tracing">Distributed Tracing<a class="headerlink" href="#distributed-tracing" title="Permanent link">&para;</a></h2>
-<p>For microservices, propagate trace context across HTTP boundaries:</p>
-<h3 id="injecting-headers-client-side">Injecting Headers (Client Side)<a class="headerlink" href="#injecting-headers-client-side" title="Permanent link">&para;</a></h3>
-<pre><code class="language-go">// Inject trace headers into outgoing request
-req, _ := http.NewRequestWithContext(ctx, &quot;POST&quot;, url, body)
-opik.InjectDistributedTraceHeaders(ctx, req)
-</code></pre>
-<h3 id="extracting-headers-server-side">Extracting Headers (Server Side)<a class="headerlink" href="#extracting-headers-server-side" title="Permanent link">&para;</a></h3>
-<pre><code class="language-go">func handler(w http.ResponseWriter, r *http.Request) {
-    // Extract trace headers
-    headers := opik.ExtractDistributedTraceHeaders(r)
-
-    // Continue the distributed trace
-    ctx, span, _ := client.ContinueTrace(r.Context(), headers, &quot;handle-request&quot;)
-    defer span.End(ctx)
-
-    // Process request...
-}
-</code></pre>
-<h3 id="propagating-http-client">Propagating HTTP Client<a class="headerlink" href="#propagating-http-client" title="Permanent link">&para;</a></h3>
-<p>Use the built-in propagating client:</p>
-<pre><code class="language-go">// Create client that auto-injects trace headers
-httpClient := opik.PropagatingHTTPClient()
-
-// All requests will include trace headers
-resp, _ := httpClient.Do(req.WithContext(ctx))
-</code></pre>
-<h2 id="header-format">Header Format<a class="headerlink" href="#header-format" title="Permanent link">&para;</a></h2>
-<p>The SDK uses these headers for distributed tracing:</p>
+<h1 id="omniagent-integration">OmniAgent Integration<a class="headerlink" href="#omniagent-integration" title="Permanent link">&para;</a></h1>
+<p>The <code>opik-go</code> SDK provides observability support for <a href="https://github.com/plexusone/omniagent">omniagent</a> - a flexible agent framework for building conversational AI applications in Go.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The integration consists of two packages:</p>
 <table>
 <thead>
 <tr>
-<th>Header</th>
+<th>Package</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>X-Opik-Trace-ID</code></td>
-<td>The trace ID</td>
+<td><code>opik-go/agentobs</code></td>
+<td>Generic agent observability interfaces (media extraction, sanitization, trace management)</td>
 </tr>
 <tr>
-<td><code>X-Opik-Parent-Span-ID</code></td>
-<td>The parent span ID</td>
+<td>Your app's integration</td>
+<td>Hook implementation that bridges omniagent events to Opik traces</td>
 </tr>
 </tbody>
 </table>
+<p>OmniAgent itself is <strong>observability-agnostic</strong>—it doesn't bundle any specific telemetry SDK. Instead, integrations are built in your application code. See the <a href="https://github.com/plexusone/omniagent/blob/main/docs/guides/observability.md">omniagent observability guide</a> for details.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Install opik-go (includes agentobs)
+go get github.com/plexusone/opik-go
+
+# Install omniagent
+go get github.com/plexusone/omniagent
+</code></pre>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Build an Opik integration in your application:</p>
+<pre><code class="language-go">package main
+
+import (
+    &quot;context&quot;
+
+    &quot;github.com/plexusone/omniagent/agent&quot;
+    opikintegration &quot;my-agent/integrations/opik&quot;  // Your app's integration
+    &quot;github.com/plexusone/opik-go&quot;
+)
+
+func main() {
+    ctx := context.Background()
+
+    // Create Opik client
+    opikClient, _ := opik.NewClient(opik.WithProjectName(&quot;my-agent&quot;))
+
+    // Create Opik hook
+    opikHook, _ := opikintegration.New(
+        opikintegration.WithClient(opikClient),
+        opikintegration.WithTags(&quot;env:production&quot;),
+    )
+
+    // Create agent with hook
+    myAgent, _ := agent.New(config,
+        agent.WithCompiledHook(opikHook),
+    )
+
+    // Initialize hooks
+    myAgent.InitHooks(ctx)
+    defer myAgent.HookRegistry().Close()
+
+    // Processing is automatically traced
+    myAgent.ProcessWithSession(ctx, &quot;session-123&quot;, &quot;Hello!&quot;)
+}
+</code></pre>
+<h2 id="event-mapping">Event Mapping<a class="headerlink" href="#event-mapping" title="Permanent link">&para;</a></h2>
+<p>The integration automatically maps omniagent events to Opik traces and spans:</p>
+<table>
+<thead>
+<tr>
+<th>OmniAgent Event</th>
+<th>Opik Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EventSessionCreated</code></td>
+<td>Create trace <code>agent.session.{id}</code></td>
+</tr>
+<tr>
+<td><code>EventMessageReceived</code></td>
+<td>Create span <code>message.user</code></td>
+</tr>
+<tr>
+<td><code>EventToolCalled</code></td>
+<td>Create span <code>tool.{name}</code></td>
+</tr>
+<tr>
+<td><code>EventToolCompleted</code></td>
+<td>End tool span with result/error</td>
+</tr>
+<tr>
+<td><code>EventMessageSent</code></td>
+<td>Create span <code>message.assistant</code></td>
+</tr>
+<tr>
+<td><code>EventSessionUpdated</code></td>
+<td>Touch trace (reset stale timer)</td>
+</tr>
+<tr>
+<td><code>EventJobExecuted</code></td>
+<td>Create span <code>job.{name}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">opikHook, _ := opikintegration.New(
+    // Required: Opik client
+    opikintegration.WithClient(opikClient),
+
+    // Override project name (defaults to client's project)
+    opikintegration.WithProjectName(&quot;my-agent&quot;),
+
+    // Add tags to all traces
+    opikintegration.WithTags(&quot;env:prod&quot;, &quot;version:1.0&quot;),
+
+    // Stale trace cleanup (default: 5min timeout, 1min sweep)
+    opikintegration.WithStaleTimeout(10 * time.Minute),
+    opikintegration.WithSweepInterval(2 * time.Minute),
+
+    // Content sanitization (default: enabled)
+    opikintegration.WithSanitization(true),
+
+    // Media extraction from content (default: enabled)
+    opikintegration.WithMediaExtraction(true),
+
+    // Share trace with LLM clients for correlation (default: false)
+    opikintegration.WithShareTraceWithLLM(true),
+
+    // Custom trace name prefix (default: &quot;agent.session.&quot;)
+    opikintegration.WithTraceNamePrefix(&quot;custom.&quot;),
+
+    // Include tool parameters in spans (default: true)
+    opikintegration.WithToolParams(true),
+
+    // Include tool results in spans (default: true)
+    opikintegration.WithToolResults(true),
+
+    // Truncate content at this length (default: 0 = no limit)
+    opikintegration.WithMaxContentLength(10000),
+)
+</code></pre>
+<h2 id="stale-trace-cleanup">Stale Trace Cleanup<a class="headerlink" href="#stale-trace-cleanup" title="Permanent link">&para;</a></h2>
+<p>The integration automatically cleans up inactive traces to prevent resource leaks:</p>
+<ul>
+<li><strong>Stale Timeout</strong>: Traces are closed after 5 minutes of inactivity (configurable)</li>
+<li><strong>Sweep Interval</strong>: A background goroutine checks every 1 minute (configurable)</li>
+<li><strong>Graceful Shutdown</strong>: All active traces are closed when the hook is closed</li>
+</ul>
+<pre><code class="language-go">// Configure cleanup behavior
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(client),
+    opikintegration.WithStaleTimeout(10 * time.Minute),  // Close after 10min idle
+    opikintegration.WithSweepInterval(30 * time.Second), // Check every 30s
+)
+</code></pre>
+<h2 id="content-sanitization">Content Sanitization<a class="headerlink" href="#content-sanitization" title="Permanent link">&para;</a></h2>
+<p>The integration sanitizes message content before sending to Opik:</p>
+<ul>
+<li>Removes <code>&lt;system-reminder&gt;</code> and other metadata blocks</li>
+<li>Redacts patterns that look like API keys or secrets</li>
+<li>Removes ANSI escape codes from terminal output</li>
+<li>Collapses excessive whitespace</li>
+</ul>
+<pre><code class="language-go">// Disable sanitization if needed
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(client),
+    opikintegration.WithSanitization(false),
+)
+</code></pre>
+<h2 id="media-extraction">Media Extraction<a class="headerlink" href="#media-extraction" title="Permanent link">&para;</a></h2>
+<p>The integration extracts media references from message content:</p>
+<ul>
+<li>Markdown images: <code>![alt](url)</code></li>
+<li>Data URLs: <code>data:image/png;base64,...</code></li>
+<li>File URLs: <code>file:///path/to/file</code></li>
+<li>HTTP media URLs with common extensions</li>
+</ul>
+<pre><code class="language-go">// Disable media extraction if not needed
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(client),
+    opikintegration.WithMediaExtraction(false),
+)
+</code></pre>
+<h2 id="llm-trace-correlation">LLM Trace Correlation<a class="headerlink" href="#llm-trace-correlation" title="Permanent link">&para;</a></h2>
+<p>When using omnillm's <code>TracingClient</code>, you can correlate LLM traces with agent traces:</p>
+<pre><code class="language-go">// Enable trace sharing
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(client),
+    opikintegration.WithShareTraceWithLLM(true),
+)
+
+// In your message handler, inject the trace context
+func (a *MyAgent) handleMessage(ctx context.Context, sessionID, message string) {
+    // Inject trace context for LLM calls
+    ctx = opikHook.InjectTraceContext(ctx, sessionID)
+
+    // Now LLM calls will appear as child spans
+    response, _ := a.llmClient.Chat(ctx, message)
+}
+</code></pre>
+<p>This creates a trace hierarchy:</p>
+<pre><code>agent.session.{id} (trace)
+├── message.user (span)
+├── tool.search (span)
+│   └── llm-call (span, from omnillm TracingClient)
+├── tool.search completed (span end)
+└── message.assistant (span)
+    └── llm-call (span, from omnillm TracingClient)
+</code></pre>
+<h2 id="getting-trace-context">Getting Trace Context<a class="headerlink" href="#getting-trace-context" title="Permanent link">&para;</a></h2>
+<p>You can retrieve the current trace context for a session:</p>
+<pre><code class="language-go">traceID, spanID, ok := opikHook.GetTraceContext(&quot;session-123&quot;)
+if ok {
+    fmt.Printf(&quot;Trace: %s, Current Span: %s\n&quot;, traceID, spanID)
+}
+</code></pre>
+<h2 id="the-agentobs-package">The agentobs Package<a class="headerlink" href="#the-agentobs-package" title="Permanent link">&para;</a></h2>
+<p>The <code>opik-go/agentobs</code> package provides reusable utilities for agent observability:</p>
+<h3 id="event-types">Event Types<a class="headerlink" href="#event-types" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">import &quot;github.com/plexusone/opik-go/agentobs&quot;
+
+// Create an event
+event := agentobs.NewEvent(agentobs.EventMessageReceived).
+    WithSession(&quot;session-123&quot;).
+    WithData(&quot;content&quot;, &quot;Hello!&quot;)
+</code></pre>
+<h3 id="sanitization">Sanitization<a class="headerlink" href="#sanitization" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Sanitize content
+cleaned := agentobs.Sanitize(content, agentobs.DefaultSanitizeConfig())
+
+// Sanitize a map recursively
+cleanedData := agentobs.SanitizeMap(data, agentobs.DefaultSanitizeConfig())
+
+// Redact sensitive keys
+safeData := agentobs.SanitizeMapKeys(data)
+</code></pre>
+<h3 id="media-extraction_1">Media Extraction<a class="headerlink" href="#media-extraction_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Extract media references from content
+refs := agentobs.ExtractMedia(messageContent)
+for _, ref := range refs {
+    fmt.Printf(&quot;Found %s: %s\n&quot;, ref.Type, ref.URL)
+}
+
+// Strip media from content
+stripped := agentobs.StripMedia(content)
+</code></pre>
+<h3 id="tracemanager">TraceManager<a class="headerlink" href="#tracemanager" title="Permanent link">&para;</a></h3>
+<p>The <code>TraceManager</code> provides session-based trace lifecycle management:</p>
+<pre><code class="language-go">// Create a custom trace client adapter (implements agentobs.TraceClient)
+adapter := &amp;myTraceClientAdapter{client: opikClient}
+
+// Create manager
+manager := agentobs.NewTraceManager(adapter,
+    agentobs.WithStaleTimeout(5 * time.Minute),
+    agentobs.WithSweepInterval(1 * time.Minute),
+)
+defer manager.Close()
+
+// Start a trace for a session
+state, _ := manager.StartTrace(ctx, &quot;session-123&quot;, &quot;my-agent&quot;, nil)
+
+// Create spans
+span, _ := manager.StartSpan(ctx, &quot;session-123&quot;, &quot;tool.search&quot;, &quot;tool&quot;, input)
+manager.EndSpan(ctx, &quot;session-123&quot;, output, nil)
+
+// End the trace
+manager.EndTrace(ctx, &quot;session-123&quot;, finalOutput)
+</code></pre>
+<h2 id="viewing-traces">Viewing Traces<a class="headerlink" href="#viewing-traces" title="Permanent link">&para;</a></h2>
+<p>After running your agent with the Opik integration, traces appear in the Opik dashboard:</p>
+<pre><code>agent.session.abc123 (trace)
+├── message.user (span)
+│   └── input: &quot;Search for climate data&quot;
+├── tool.web_search (span)
+│   ├── input: {query: &quot;climate data 2024&quot;}
+│   └── output: {results: [...]}
+├── tool.analyze (span)
+│   ├── input: {data: [...]}
+│   └── output: {summary: &quot;...&quot;}
+└── message.assistant (span)
+    └── output: &quot;Here's what I found...&quot;
+</code></pre>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Use meaningful session IDs</strong>: Session IDs become part of trace names, so use descriptive identifiers.</p>
+</li>
+<li>
+<p><strong>Close hooks properly</strong>: Always call <code>hook.Close()</code> or <code>registry.Close()</code> to flush pending traces.</p>
+</li>
+<li>
+<p><strong>Enable LLM correlation</strong>: If using omnillm, enable <code>WithShareTraceWithLLM(true)</code> for full visibility.</p>
+</li>
+<li>
+<p><strong>Configure stale timeout</strong>: Set based on expected conversation length to avoid premature trace closure.</p>
+</li>
+<li>
+<p><strong>Use tags</strong>: Add environment and version tags for filtering in the dashboard.</p>
+</li>
+</ol>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/plexusone/omniagent">omniagent Documentation</a></li>
+<li><a href="../omnillm/">omnillm Integration</a></li>
+<li><a href="../../tutorials/agentic-observability/">Agentic Observability Tutorial</a></li>
+<li><a href="../../core-concepts/context-propagation/">Context Propagation</a></li>
+</ul>
 
 
 
