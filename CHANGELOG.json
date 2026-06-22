@@ -7,6 +7,27 @@
   "commitConvention": "conventional",
   "releases": [
     {
+      "version": "v0.8.0",
+      "date": "2026-06-22",
+      "highlights": [
+        { "description": "New `agentobs` package providing generic agent observability interfaces for building agent framework integrations" }
+      ],
+      "added": [
+        { "description": "`agentobs` package with generic agent observability interfaces", "commit": "3e121f5" },
+        { "description": "`AgentEvent` type for agent lifecycle events (session, message, tool, job)", "commit": "3e121f5" },
+        { "description": "`TraceManager` for session-based trace lifecycle with stale cleanup", "commit": "3e121f5" },
+        { "description": "`Sanitize()` and `SanitizeMap()` for content sanitization", "commit": "3e121f5" },
+        { "description": "`ExtractMedia()` for extracting media references from content", "commit": "3e121f5" },
+        { "description": "`Observer` interface for generic observability backends", "commit": "3e121f5" },
+        { "description": "`FilteredObserver` and `MultiObserver` for composable observers", "commit": "3e121f5" }
+      ],
+      "documentation": [
+        { "description": "Added OmniAgent integration guide", "commit": "4aacaee" },
+        { "description": "Added v0.8.0 release notes", "commit": "4aacaee" },
+        { "description": "Updated README with Agent Framework Integrations section", "commit": "4aacaee" }
+      ]
+    },
+    {
       "version": "v0.7.0",
       "date": "2026-06-20",
       "highlights": [
