@@ -659,11 +659,53 @@ if opik.IsRateLimited(err) {
 }
 ```
 
+## Agent Framework Integrations
+
+### OmniAgent
+
+The SDK includes an `agentobs` package that provides generic agent observability interfaces for [omniagent](https://github.com/plexusone/omniagent). OmniAgent is observability-agnostic—integrations are built in your application code.
+
+```go
+import (
+    "github.com/plexusone/omniagent/agent"
+    opikintegration "my-agent/integrations/opik"  // Your app's integration
+    "github.com/plexusone/opik-go"
+)
+
+// Create Opik client and hook
+opikClient, _ := opik.NewClient(opik.WithProjectName("my-agent"))
+opikHook, _ := opikintegration.New(
+    opikintegration.WithClient(opikClient),
+    opikintegration.WithTags("env:production"),
+    opikintegration.WithStaleTimeout(10 * time.Minute),
+)
+
+// Create agent with Opik hook
+myAgent, _ := agent.New(config,
+    agent.WithCompiledHook(opikHook),
+)
+
+// Initialize and use - all events are automatically traced
+myAgent.InitHooks(ctx)
+defer myAgent.HookRegistry().Close()
+
+myAgent.ProcessWithSession(ctx, "session-123", "Hello!")
+```
+
+The `agentobs` package provides:
+
+- **TraceManager**: Session-based trace lifecycle with stale cleanup (5min default)
+- **Sanitization**: Content sanitization to redact secrets and internal markers
+- **Media extraction**: Extract images and attachments from message content
+- **Generic events**: `AgentEvent` type for bridging framework-specific events
+
+See [OmniAgent Integration](docs/integrations/omniagent.md) for full documentation.
+
 ## Tutorials
 
 ### Agentic Observability
 
-For integrating Opik with agent frameworks like Google ADK and Eino, see the [Agentic Observability Tutorial](docsrc/tutorials/agentic-observability.md). This tutorial covers:
+For integrating Opik with agent frameworks like Google ADK and Eino, see the [Agentic Observability Tutorial](docs/tutorials/agentic-observability.md). This tutorial covers:
 
 - Tracing Google ADK agents with tools
 - Tracing Eino workflow graphs
